@@ -1,11 +1,22 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
 import { Form, Field } from "react-final-form";
-import GenericForm from './reutilizables/generic_form';
+import GenericForm from '../reutilizables/generic_form';
+
+import signup from './';
 
 class Registro extends GenericForm {
 
-    async onSubmit(values) {   
-        console.log(values);
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: this.props.match.params.token
+        }
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    async onSubmit(values) {  
+        console.log({ ...values, token: this.state.token});
     }
 
     render() {
@@ -85,14 +96,6 @@ class Registro extends GenericForm {
                                 <option value="female">Masculino</option>
 
                                 </Field>
-                            </div>
-                            </div>
-                            <div className="level">
-                            <div className="level-item">
-                                <Field name="correo"
-                                component={this.renderTextField}
-                                label="Correo electronico"
-                                />
                             </div>
                             </div>
                             <div className="level">

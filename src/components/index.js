@@ -13,8 +13,12 @@ import { api, ws } from './../config/variables';
 
 //Base
 import LandingPage from './landing_page';
-import Registro from './registro';
 import NotFound from './reutilizables/not_found';
+
+//registro
+import Registro from './registro/registro';
+import Validacion from './registro/validacion';
+import RegistroGestor from './registro/registro_gestor';
 
 // Crear el link
 const httpLink = createHttpLink({
@@ -56,7 +60,10 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={LandingPage} />
+            <Route path="/registro/:token" component={Registro} />
             <Route path="/registro" component={Registro} />
+            <Route path="/registro_gestor" component={RegistroGestor} />
+            <Route path="/validacion" component={Validacion} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>

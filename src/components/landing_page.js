@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from "react-router-dom";
 
 //queries
 import nullname from './../queries/nullname';
@@ -18,7 +19,7 @@ class LandingPage extends Component {
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-danger">Registrate!</a>
+                <Link className="button is-danger" to="/validacion">Registrate!</Link>
               </div>
             </div>
           </div>

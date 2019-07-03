@@ -1,11 +1,22 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
 import { Form, Field } from "react-final-form";
-import GenericForm from './reutilizables/generic_form';
+import GenericForm from '../reutilizables/generic_form';
 
-class Formulario extends GenericForm {
+import signup from './';
 
-    async onSubmit(values) {   
-        console.log(values);
+class Registro extends GenericForm {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: this.props.match.params.token
+        }
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    async onSubmit(values) {  
+        console.log({ ...values, token: this.state.token});
     }
 
     render() {
@@ -40,6 +51,9 @@ class Formulario extends GenericForm {
                         if (!values.sexo) {
                             errors.sexo = "Seleccione una opcion";
                         }
+                        if (!values.sexo) {
+                            errors.sexo = "Seleccione una opcion";
+                        }
 
                         if (!values.correo) {
                             errors.correo = "Ingrese su correo electronico";
@@ -63,7 +77,14 @@ class Formulario extends GenericForm {
                                 />
                             </div>
                             </div>
-
+                            <div className="level">
+                            <div className="level-item">
+                                <Field name="nombre_usuario"
+                                component={this.renderTextField}
+                                label="Nombre  de usuario"
+                                />
+                            </div>
+                            </div>
                             <div className="level">
                             <div className="level-item">
                                 <Field name="sexo"
@@ -121,5 +142,5 @@ class Formulario extends GenericForm {
     }
 }
  
-export default Formulario;
+export default Registro;
   

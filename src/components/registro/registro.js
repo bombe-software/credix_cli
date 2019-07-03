@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
 
-import signup from './';
+//import signup from './';
 
 class Registro extends GenericForm {
 

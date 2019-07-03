@@ -11,9 +11,10 @@ import { getMainDefinition } from 'apollo-utilities';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { api, ws } from './../config/variables';
 
-//Componentes
+//Base
 import LandingPage from './landing_page';
-import Formulario from './formulario';
+import Registro from './registro';
+import NotFound from './reutilizables/not_found';
 
 // Crear el link
 const httpLink = createHttpLink({
@@ -55,7 +56,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/formulario" component={Formulario} />
+            <Route path="/registro" component={Registro} />
+            <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
       </ApolloProvider>

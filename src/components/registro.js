@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from './reutilizables/generic_form';
 
-class Formulario extends GenericForm {
+class Registro extends GenericForm {
 
     async onSubmit(values) {   
         console.log(values);
@@ -40,6 +40,9 @@ class Formulario extends GenericForm {
                         if (!values.sexo) {
                             errors.sexo = "Seleccione una opcion";
                         }
+                        if (!values.sexo) {
+                            errors.sexo = "Seleccione una opcion";
+                        }
 
                         if (!values.correo) {
                             errors.correo = "Ingrese su correo electronico";
@@ -63,7 +66,14 @@ class Formulario extends GenericForm {
                                 />
                             </div>
                             </div>
-
+                            <div className="level">
+                            <div className="level-item">
+                                <Field name="nombre_usuario"
+                                component={this.renderTextField}
+                                label="Nombre  de usuario"
+                                />
+                            </div>
+                            </div>
                             <div className="level">
                             <div className="level-item">
                                 <Field name="sexo"
@@ -75,6 +85,14 @@ class Formulario extends GenericForm {
                                 <option value="female">Masculino</option>
 
                                 </Field>
+                            </div>
+                            </div>
+                            <div className="level">
+                            <div className="level-item">
+                                <Field name="correo"
+                                component={this.renderTextField}
+                                label="Correo electronico"
+                                />
                             </div>
                             </div>
                             <div className="level">
@@ -121,5 +139,5 @@ class Formulario extends GenericForm {
     }
 }
  
-export default Formulario;
+export default Registro;
   

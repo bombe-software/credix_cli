@@ -1,32 +1,13 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
-import { Link } from "react-router-dom";
-
-
 //queries
-import nullname from './../queries/nullname';
 
 class LandingPage extends Component {
 
   render() {
-    if (this.props.data.loading) { return (<div>Loading...</div>); }
-    console.log(this.props.data.nullnames);
     return (
       <div>
-        <nav className="navbar is-light is-bold" role="navigation" aria-label="main navigation">
-          <div className="navbar-brand">
-            <span className="navbar-item">LOGO CREDIX</span>
-          </div>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <Link className="button is-danger" to="/validacion">Registrate!</Link>
-              </div>
-            </div>
-          </div>
-        </nav>
         <section className="hero is-medium is-primary is-bold has-background">
-          <img src="img/prestamo.jpg" className="hero-background is-transparent"></img>
+          <img src="img/prestamo.jpg" className="hero-background is-transparent" alt="prestamo"></img>
           <div className="hero-body">
             <div className="container">
               <h1 className="title">
@@ -48,8 +29,8 @@ class LandingPage extends Component {
                   Con la ayuda de nuesta IA podemos detectar
                   patrones faciales que puedan permitir la detección de su estado al contestar nuestro test.
                 </div>
-                <figure class="image container imagen ">
-                  <img src="img/joven.png"></img>
+                <figure className="image container imagen ">
+                  <img src="img/joven.png" alt="joven"></img>
                 </figure>
               </div>
               </div>
@@ -60,8 +41,8 @@ class LandingPage extends Component {
                   Nuestro test le ayudara a saber si sus clientes son aptos para recibir un crédito y con ello
                   llevar un registro de ellos para tener un mejor control.
                 </div>
-                <figure class="image container imagen2">
-                  <img src="img/solicita-credito.png"></img>
+                <figure className="image container imagen2">
+                  <img src="img/solicita-credito.png" alt="credito"></img>
                 </figure>
               </div>
               <div className="tile is-parent">
@@ -71,8 +52,8 @@ class LandingPage extends Component {
                   Buscamos ser una opción para que la decisión de otorgar un crédito a una persona sea
                   más sencilla de tomar.
                 </div>
-                <figure class="image container imagen3">
-                  <img src="img/decision.jpg"></img>
+                <figure className="image container imagen3">
+                  <img src="img/decision.jpg" alt="decision"></img>
                 </figure>
                 </div>
               </div>
@@ -83,4 +64,4 @@ class LandingPage extends Component {
       }
     }
     
-    export default graphql(nullname)(LandingPage);
+    export default  LandingPage;

@@ -4,6 +4,8 @@ import GenericForm from '../reutilizables/generic_form';
 import { graphql } from 'react-apollo';
 import login from "./../../mutations/especiales/login";
 import usuario from "./../../queries/usuario";
+import WaveBackground from '../reutilizables/wave_background';
+
 
 class LoginForm extends GenericForm {
     
@@ -20,7 +22,7 @@ class LoginForm extends GenericForm {
 
     async onSubmit(values) {   
         const { email, password } = values;
-
+        const history = this.props.history;
         this.props.mutate({
             variables: {
                 email,
@@ -30,11 +32,13 @@ class LoginForm extends GenericForm {
                 { query: usuario },
             ]
         })
-            .then(() => this.props.history.push("/"))
+            .then(() => this.props.props.history.push('/'))
             .catch(res => {
+            if(res.graphQLErrors){
                 const errors = res.graphQLErrors.map(error => error.message);
                 const error = errors[0];
                 this.setState({ error });
+            }
             });
     }
 
@@ -108,6 +112,7 @@ class LoginForm extends GenericForm {
                 </div>
             </div>
             </section>
+            <WaveBackground/>
         </div>
         );
     }

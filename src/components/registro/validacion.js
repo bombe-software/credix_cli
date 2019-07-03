@@ -1,6 +1,7 @@
 import React from 'react';
 import GenericForm from '../reutilizables/generic_form';
 import { Link } from "react-router-dom";
+import WaveBackground from '../reutilizables/wave_background';
 
 class Registro extends GenericForm {
     render() {
@@ -29,6 +30,7 @@ class Registro extends GenericForm {
                 </div>
             </div>
             </section>
+        <WaveBackground/>
         </div>
         );
     }

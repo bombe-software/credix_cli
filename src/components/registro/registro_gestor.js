@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
+import WaveBackground from '../reutilizables/wave_background';
 
 class RegistroGestor extends GenericForm {
 
@@ -67,6 +68,7 @@ class RegistroGestor extends GenericForm {
                 </div>
             </div>
             </section>
+            <WaveBackground/>
         </div>
         );
     }

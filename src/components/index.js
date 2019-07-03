@@ -16,11 +16,14 @@ import LandingPage from './landing_page';
 import Login from './login/login';
 import Test from './test_credito/test_form';
 import NotFound from './reutilizables/not_found';
-
+import Navbar from './reutilizables/navbar';
+import Footer from './reutilizables/footer';
 //registro
 import Registro from './registro/registro';
 import Validacion from './registro/validacion';
 import RegistroGestor from './registro/registro_gestor';
+import RegistroCompleto from './registro/registro_completo';
+
 
 // Crear el link
 const httpLink = createHttpLink({
@@ -60,6 +63,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client} >
         <BrowserRouter>
+         <Navbar/>
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/login" component={Login} />
@@ -67,9 +71,11 @@ class App extends Component {
             <Route path="/registro/:token" component={Registro} />
             <Route path="/registro" component={Registro} />
             <Route path="/registro_gestor" component={RegistroGestor} />
+            <Route path="/registro_completo" component={RegistroCompleto} />
             <Route path="/validacion" component={Validacion} />
             <Route component={NotFound} />
           </Switch>
+          <Footer/>
         </BrowserRouter>
       </ApolloProvider>
     );

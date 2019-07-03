@@ -1,8 +1,14 @@
 import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
-import io from 'socket.io';
+import io from 'socket.io-client';
+
 class Test extends GenericForm {
+
+    constructor() {
+        super()
+        this.webcam = React.createRef()
+      }
 
     async onSubmit(values) {   
         console.log(values);
@@ -11,12 +17,13 @@ class Test extends GenericForm {
     renderWebCam(){
         const socket = io.connect('http://localhost:9000');
         socket.on('image', (image)=>{
-            const imageElm = document.getElementById('image');
+            const imageElm = this.webcam.current;
             imageElm.src = `data:image/jpeg;base64,${image}`;
         });
     }
 
     render() {
+        this.renderWebCam();
         return(
         <div>
             <section className="hero is-large">
@@ -63,6 +70,7 @@ class Test extends GenericForm {
                         }}
                         render={({ handleSubmit, reset, submitting, pristine, values }) => (
                         <form onSubmit={handleSubmit}>
+                            <img ref={this.webcam} />
                             <div className="level">
                             <div className="level-item">
                                 <Field name="nombre"

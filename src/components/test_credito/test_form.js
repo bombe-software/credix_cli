@@ -1,12 +1,20 @@
 import React from 'react';
 import { Form, Field } from "react-final-form";
-import GenericForm from './reutilizables/generic_form';
-
-class Formulario extends GenericForm {
+import GenericForm from '../reutilizables/generic_form';
+// import io from 'socket.io';
+class Test extends GenericForm {
 
     async onSubmit(values) {   
         console.log(values);
     }
+
+    // renderWebCam(){
+    //     const socket = io.connect('http://localhost:9000');
+    //     socket.on('image', (image)=>{
+    //         const imageElm = document.getElementById('image');
+    //         imageElm.src = `data:image/jpeg;base64,${image}`;
+    //     });
+    // }
 
     render() {
         return(
@@ -18,7 +26,7 @@ class Formulario extends GenericForm {
                     <div className="box" style={{padding: "48px"}}>
                     <br />
                     <h1 className="title has-text-centered">
-                        Registrate
+                        Test
                     </h1>
                     <br />
                     <p className="subtitle has-text-centered">
@@ -121,5 +129,5 @@ class Formulario extends GenericForm {
     }
 }
  
-export default Formulario;
+export default Test;
   

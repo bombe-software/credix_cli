@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from "react-router-dom";
 
 
 //queries
@@ -16,10 +17,10 @@ class LandingPage extends Component {
           <div className="navbar-brand">
             <span className="navbar-item">LOGO CREDIX</span>
           </div>
-          <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <span className="button is-success">Registrate!</span>
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <Link className="button is-danger" to="/validacion">Registrate!</Link>
               </div>
             </div>
           </div>

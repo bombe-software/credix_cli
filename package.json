@@ -29,6 +29,7 @@
     "react-dom": "^16.8.6",
     "react-final-form": "^6.3.0",
     "react-router-dom": "^5.0.1",
+    "socket.io": "^2.2.0",
     "subscriptions-transport-ws": "^0.9.16"
   }
 }

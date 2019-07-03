@@ -11,19 +11,12 @@ class LoginForm extends GenericForm {
         super(props);
         this.webcam = React.createRef()
         this.onSubmit = this.onSubmit.bind(this);
-        this.renderWebCam = this.renderWebCam.bind(this);
         this.state = {
             error: ""
         }
     }
 
-    renderWebCam(){
-        const socket = io.connect('http://localhost:9000');
-        socket.on('image', (image)=>{
-            const imageElm = document.getElementById('image');
-            imageElm.src = `data:image/jpeg;base64,${image}`;
-        });
-    }
+
 
     async onSubmit(values) {   
         const { email, password } = values;

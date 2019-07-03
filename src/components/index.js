@@ -13,7 +13,6 @@ import { api, ws } from './../config/variables';
 
 //Base
 import LandingPage from './landing_page';
-import Formulario from './formulario';
 import Login from './login/login';
 import Test from './test_credito/test_form';
 import NotFound from './reutilizables/not_found';
@@ -63,7 +62,6 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/formulario" component={Formulario} />
             <Route path="/login" component={Login} />
             <Route path="/test" component={Test} />
             <Route path="/registro/:token" component={Registro} />

@@ -1,0 +1,10 @@
+.imagen {
+     position:absolute;
+      top:0;
+      left:0; 
+      width:250px; 
+      height:250px;
+    }
+.imagen .degradado {
+      -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+    }

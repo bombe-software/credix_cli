@@ -1,9 +1,9 @@
 import React from 'react';
-// import { graphql } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
 import WaveBackground from '../reutilizables/wave_background';
-//import signup from './';
+import signup from '../../mutations/especiales/signup';
 
 class Registro extends GenericForm {
 
@@ -16,9 +16,19 @@ class Registro extends GenericForm {
     }
 
     async onSubmit(values) {
-        console.log({ ...values, token: this.state.token });
-        console.log(values);
-        console.log(this.state.token);
+        console.log(this.props);
+        const {
+            nombre, nombre_usuario, sexo, email, password 
+          } = values;
+         const token = this.state.token;
+
+          await this.props.mutate({
+            variables:{
+                email,nombre,nombre_usuario,password,sexo,token
+            }
+          })
+          .then(()=> console.log("Bien"))
+          .catch(()=>console.log("UPS"))
     }
 
     render() {
@@ -72,8 +82,8 @@ class Registro extends GenericForm {
                                                 errors.sexo = "Seleccione una opcion";
                                             }
 
-                                            if (!values.correo) {
-                                                errors.correo = "Ingrese su correo electronico";
+                                            if (!values.email) {
+                                                errors.email = "Ingrese su email electronico";
                                             }
                                             if (!values.password) {
                                                 errors.password = "Ingrese su password";
@@ -108,18 +118,17 @@ class Registro extends GenericForm {
                                                             component={this.renderSelectField}
                                                             label="Sexo"
                                                         >
-                                                            <option value="-">Seleccione una opcion</option>
-                                                            <option value="male">Femenino</option>
-                                                            <option value="female">Masculino</option>
-
+                                                            <option value="-">Seleccione una opción</option>
+                                                            <option value="Femenino">Femenino</option>
+                                                            <option value="Masculino">Masculino</option>
                                                         </Field>
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="correo"
+                                                        <Field name="email"
                                                             component={this.renderTextField}
-                                                            label="Correo electronico"
+                                                            label="email electronico"
                                                         />
                                                     </div>
                                                 </div>
@@ -139,12 +148,11 @@ class Registro extends GenericForm {
                                                         />
                                                     </div>
                                                 </div>
-                                                {/* <code>{this.state.error}</code> */}
                                                 <br />
                                                 <div className="buttons has-text-centered">
                                                     <button type="submit" className="button is-primary" disabled={submitting}>
                                                         Registrarse
-                            </button>
+                                                    </button>
                                                 </div>
                                             </form>
                                         )}
@@ -160,4 +168,4 @@ class Registro extends GenericForm {
     }
 }
 
-export default Registro;
+export default graphql(signup)(Registro);

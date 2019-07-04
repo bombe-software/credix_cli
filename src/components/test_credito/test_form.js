@@ -26,13 +26,13 @@ class Test extends GenericForm {
         this.renderWebCam();
         return (
             <div>
-                <section class="hero is-primary">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
+                <section className="hero is-primary">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title">
                                 Test de credito
                             </h1>
-                            <h2 class="subtitle">
+                            <h2 className="subtitle">
                                 Comience el test y verifica si es candidato para el credito
                             </h2>
                         </div>

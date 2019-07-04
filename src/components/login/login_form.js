@@ -30,6 +30,7 @@ class LoginForm extends GenericForm {
         })
             .then(() => this.props.props.history.push('/'))
             .catch(res => {
+                console.log("ERROR");
             if(res.graphQLErrors){
                 const errors = res.graphQLErrors.map(error => error.message);
                 const error = errors[0];

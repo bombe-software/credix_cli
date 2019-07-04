@@ -55,12 +55,16 @@ class Footer extends Component {
               </p>
               <hr />
               <p>
+                {/* eslint-disable-next-line */}
                 <a href="http://www.bombesoftware.com"><i className="fa fa-globe" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
+                {/* eslint-disable-next-line */}
                 <a href="https://www.facebook.com/bombesoftware"><i className="fa fa-facebook-official" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
+                {/* eslint-disable-next-line */}
                 <a href="https://twitter.com/bombesoftware"><i className="fa fa-twitter" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
+                {/* eslint-disable-next-line */}
                 <a href="https://instagram.com/bombesoftware"><i className="fa fa-instagram" aria-hidden="true"></i></a>
               
               </p>

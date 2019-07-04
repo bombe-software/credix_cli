@@ -17,19 +17,20 @@ class Registro extends GenericForm {
 
     async onSubmit(values) {
         console.log({ ...values, token: this.state.token });
-        this.props.history.push('/registro_completo');
+        console.log(values);
+        console.log(this.state.token);
     }
 
     render() {
         return (
             <div>
-                <section class="hero is-primary">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
+                <section className="hero is-info">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title">
                                 Registrate
                             </h1>
-                            <h2 class="subtitle">
+                            <h2 className="subtitle">
                                 Llene los campos requeridos y comience ahora mismo
                             </h2>
                         </div>
@@ -40,10 +41,9 @@ class Registro extends GenericForm {
                         <div className="columns">
                             <div className="column is-6-desktop is-10-tablet is-offset-3-desktop is-offset-2-tablet">
                                 <div className="box" style={{ padding: "48px" }}>
-                                    <br />
-                                    <h1 className="title has-text-centered">
+                                    <h1 className=" has-text-weight-semibold is-size-1 has-text-centered has-text-info">
                                         Registrate
-                    </h1>
+                                    </h1>
                                     <br />
                                     <p className="subtitle has-text-centered">
                                         Registrate en el siguiente formulario para que usted pueda acceder

@@ -17,12 +17,8 @@ class LoginForm extends GenericForm {
             error: ""
         }
     }
-
-
-
     async onSubmit(values) {   
         const { email, password } = values;
-        const history = this.props.history;
         this.props.mutate({
             variables: {
                 email,
@@ -50,13 +46,12 @@ class LoginForm extends GenericForm {
                 <div className="columns">
                 <div className="column is-6-desktop is-10-tablet is-offset-3-desktop is-offset-2-tablet">
                     <div className="box" style={{padding: "48px"}}>
-                    <br />
-                    <h1 className="title has-text-centered">
+                    <h1 className="is-size-2 has-text-weight-semibold	 has-text-centered">
                         Login
                     </h1>
                     <br />
                     <p className="subtitle has-text-centered">
-                    Inicia sesion
+                        Inicia sesion con su correo y su contraseña para acceder a la plataforma.
                     </p>
                     <br />
                     <Form
@@ -84,8 +79,7 @@ class LoginForm extends GenericForm {
                                 component={this.renderTextField}
                                 label="Correo electronico"
                                 />
-                            </div>
-                            
+                            </div>          
                             </div>
                             
                             <div className="level">
@@ -99,8 +93,8 @@ class LoginForm extends GenericForm {
                               {this.state.error?<code>{this.state.error}</code>:""}
                             <br />
                             <div className="buttons has-text-centered">
-                            <button type="submit" className="button is-primary" disabled={submitting}>
-                                Login
+                            <button type="submit" className="button is-primary is-size-5" disabled={submitting}>
+                                <strong className="is-size-5"> Iniciar sesión </strong>
                             </button>
                           
                             </div>

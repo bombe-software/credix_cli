@@ -13,7 +13,7 @@ class Registro extends GenericForm {
                 <div className="column is-6-desktop is-10-tablet is-offset-3-desktop is-offset-2-tablet">
                     <div className="box" style={{padding: "48px"}}>
                     <br />
-                    <h1 className="title has-text-centered">
+                    <h1 className="title has-text-centered is-italic">
                         Forma de registro
                     </h1>
                     <br />
@@ -22,9 +22,13 @@ class Registro extends GenericForm {
                         clave que debe ser proporcionado por el encargado de la institucion crediticia en donde usted labora
                     </p>
                     <br />
-                    <Link className="button is-fullwidth is-primary" to="/registro/">Tengo una institucion crediticia</Link>
+                    <Link className="button is-fullwidth is-info" to="/registro/">
+                        <strong>Tengo una institucion crediticia</strong>
+                        </Link>
                     <br />
-                    <Link className="button is-fullwidth is-success" to="/registro_gestor">Tengo un codigo para registrarme como gestor</Link>
+                    <Link className="button is-fullwidth is-primary" to="/registro_gestor">
+                        <strong>Tengo un codigo para registrarme como gestor</strong>
+                        </Link>
                     </div>
                 </div>
                 </div>

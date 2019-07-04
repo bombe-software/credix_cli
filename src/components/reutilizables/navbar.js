@@ -32,7 +32,7 @@ class Navbar extends Component {
                     <div className="navbar-item ">
                         <Link to="/validacion" className="navbar-item">
                             <button className="button is-info">
-                                <strong>Registrate</strong>
+                                <strong>Regístrate</strong>
                             </button>
                         </Link>
                         <Link to="/login" className="navbar-item">

@@ -63,17 +63,17 @@ class LandingPage extends Component {
                    Nuesto algoritmo es capaz identificar entre otras cosas:
                   <br/>  <br/>
                   <strong> 
-                    Estado emocional <br/>
-                    Gestos anormales <br/>
-                    Patrones de nerviosismo <br/>
+                    - Estado emocional <br/>
+                    - Gestos anormales <br/>
+                    - Patrones de nerviosismo <br/>
                   </strong> <br/>  <br/>
                   con la finalidad de evaluar sus gestos y tener un indice que indique
-                  si es capaz de <strong> ser candidanto </strong> para el credito. 
+                  si es capaz de <strong> ser candidanto </strong> para el crédito. 
                   </h2>
                   <br/>
-                  <Link to='comparador'>
+                  <Link to='/validacion'>
                     <button className="button buttonGo is-medium is-danger is-centered">
-                      ¡Registrate ahora mismo!
+                      ¡Regístrate ahora mismo!
                     </button>
                   </Link>
                   <br/>

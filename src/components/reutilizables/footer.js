@@ -23,7 +23,7 @@ class Footer extends Component {
           <div className="columns mobile">
             <div className="column is-3 is-offset-1 is-10-mobile is-offset-1-mobile">
               <Link to="/">
-                <img src="../../../img/logo.png" alt="Demos" width="112" height="30" />
+                <img src="../../../assets/img/credix.png" alt="credix" width="112" height="30" />
               </Link>
               <br /><br />
               <p>

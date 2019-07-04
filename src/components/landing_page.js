@@ -79,7 +79,7 @@ class LandingPage extends Component {
                   <br/>
                 </div>
                 <div className="column is-6">
-                <figure class="image image is-5by4	">
+                <figure className="image image is-5by4	">
                   <img src="../../assets/img/reco_facial.png"  alt='imageload' />
                 </figure>
                 </div>

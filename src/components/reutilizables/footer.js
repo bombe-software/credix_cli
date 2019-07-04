@@ -34,7 +34,16 @@ class Footer extends Component {
               </p>
               <p>
                 <Link to="/registro">Registro</Link>
-              </p>              
+              </p>     
+              <p>
+                <Link to="/ayuda">Ayuda</Link>
+              </p> 
+              <p>
+                <Link to="/acerca_de">Acerca de</Link>
+              </p> 
+              <p>
+                <Link to="/FAQ">FAQ</Link>
+              </p>          
             </div>
             <div className="column is-3 is-10-mobile is-offset-1-mobile">
             <a href="http://www.bombesoftware.com">

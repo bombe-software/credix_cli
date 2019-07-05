@@ -3,9 +3,9 @@ import Webcam from "react-webcam";
 //import * as faceapi from 'face-api.js';
 //import axios from 'axios';
 
-import  * as tf from '@tensorflow/tfjs';
+//import  * as tf from '@tensorflow/tfjs';
 
-let model = null;
+//let model = null;
 
 class WebcamCapture extends React.Component {
   constructor() {
@@ -18,12 +18,11 @@ class WebcamCapture extends React.Component {
   };
 
 
-/*
+
   async componentDidMount() {
-    model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
+    //model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
     setInterval(this.capture, 300);
   }
-*/
 
   capture() {
     if (this.webcam.getScreenshot()) {
@@ -36,7 +35,7 @@ class WebcamCapture extends React.Component {
       image.onload = function() {
           ctx.drawImage(image, 0, 0); 
       };
-      var image1 = ctx.getImageData(0, 0, canvas.height, canvas.width);
+      //var image1 = ctx.getImageData(0, 0, canvas.height, canvas.width);
       /*
       var x = tf.browser.fromPixels(image1);
       x= x.reshape([1,300,150,3]);
@@ -44,7 +43,7 @@ class WebcamCapture extends React.Component {
       //console.log(prediction);
       const array_result = prediction.argMax().dataSync();
       */
-      // console.log(array_result);
+      //console.log(array_result);
     }
   }
 

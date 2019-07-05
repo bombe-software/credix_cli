@@ -2,12 +2,16 @@ import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
 //import io from 'socket.io-client';
-import WebcamCapture from "./webcam_capture";
+//import WebcamCapture from "./webcam_capture";
 import WaveBackground from '../reutilizables/wave_background';
 class Test extends GenericForm {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.match.params.id,
+            error: ""
+        }
         this.canvas = React.createRef();
     }
 
@@ -55,10 +59,12 @@ class Test extends GenericForm {
                                         comportamiento.
                     </p>
                                     <br />
+                                    {/**
                                     <WebcamCapture canvas={this.canvas} />
                                     <div >
                                         <canvas ref={this.canvas}></canvas>
                                     </div>
+                                    */}
                                     <Form
                                         onSubmit={this.onSubmit}
                                         validate={values => {

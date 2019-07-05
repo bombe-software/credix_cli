@@ -17,11 +17,9 @@ class Solicitud extends GenericForm {
         const { nombre, domicilio, curp, rfc } = values;
         const telefono = values.telefono.toString();
         const edad = parseInt(values.edad);
-        const ingresos = parseInt(values.ingresos);
-
         await this.props.mutate({
             variables: {
-                nombre, telefono, domicilio, edad, curp, rfc, ingresos
+                nombre, telefono, domicilio, edad, curp, rfc
             }
         }).then((res) => {
             this.props.history.push({
@@ -64,7 +62,7 @@ class Solicitud extends GenericForm {
                                         onSubmit={this.onSubmit}
                                         validate={values => {
                                             const errors = {};
-                                            let ra = /^[+]?([0-9])$/;
+                                            //let ra = /^[+]?([0-9])$/;
                                             if (!values.nombre) {
                                                 errors.nombre = "Escriba el nombre completo";
                                             }
@@ -81,20 +79,16 @@ class Solicitud extends GenericForm {
                                             if (!values.edad) {
                                                 errors.edad = "Ingrese la edad";
                                             }
+                                            /*
                                             if (!ra.test(values.edad)) {
                                                 errors.edad = "Ingrese una edad válida"
                                             }
+                                            */
                                             if (!values.curp) {
                                                 errors.curp = "Ingrese el CURP";
                                             }
                                             if (!values.rfc) {
                                                 errors.rfc = "Ingrese el RFC";
-                                            }
-                                            if (!values.ingresos) {
-                                                errors.ingresos = "Ingrese el promedio de ingresos mensuales";
-                                            }
-                                            if (ra.test(values.ingresos)) {
-                                                errors.ingresos = "Ingrese un ingreso válido";
                                             }
                                             return errors;
                                         }}
@@ -148,15 +142,6 @@ class Solicitud extends GenericForm {
                                                         <Field name="rfc"
                                                             component={this.renderTextField}
                                                             label="RFC"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="ingresos"
-                                                            component={this.renderTextField}
-                                                            label="Promedio de ingresos mensuales"
-                                                            type="number"
                                                         />
                                                     </div>
                                                 </div>

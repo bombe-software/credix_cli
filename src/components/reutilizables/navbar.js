@@ -27,12 +27,15 @@ class Navbar extends Component {
         if (this.props.data.usuario != null) {
             if (this.props.data.usuario.tipo_usuario === "Institucion") {
                 return (
-                    <Link to="/generarToken" className="navbar-item" onClick={this.handleClick}>
-                        Agregar Gestor&nbsp;&nbsp;
+                    <div>
+                        <Link to="/generarToken" className="navbar-item" onClick={this.handleClick}>
+                            Agregar Gestor&nbsp;&nbsp;
                         <span className="icon has-text-warning">
-                            <i className="fa fa-money" aria-hidden="true"></i>
-                        </span>
-                    </Link>
+                                <i className="fa fa-money" aria-hidden="true"></i>
+                            </span>
+                        </Link>
+
+                    </div>
                 );
             }
         }
@@ -41,16 +44,34 @@ class Navbar extends Component {
         if (this.props.data.usuario != null) {
             if (this.props.data.usuario.tipo_usuario === "Gestor") {
                 return (
+
                     <Link to="/solicitud_credito" className="navbar-item" onClick={this.handleClick}>
                         Solicitud de crédito&nbsp;&nbsp;
             <span className="icon has-text-dark">
                             <i className="fa fa-edit" aria-hidden="true"></i>
                         </span>
                     </Link>
+
                 );
             }
         }
     }
+    renderIsGestorC() {
+        if (this.props.data.usuario != null) {
+            if (this.props.data.usuario.tipo_usuario === "Gestor") {
+                return (
+                    <Link to="/clientes" className="navbar-item" onClick={this.handleClick}>
+                        Historial de clientes&nbsp;&nbsp;
+                <span className="icon has-text-warning">
+                            <i className="fa fa-copy" aria-hidden="true"></i>
+                        </span>
+                    </Link>
+
+                );
+            }
+        }
+    }
+
     logout() {
         this.props.mutate({
             refetchQueries: [{ query: usuario_in }]
@@ -122,6 +143,7 @@ class Navbar extends Component {
                                 </Link>
                                 {this.renderIsInstitucion()}
                                 {this.renderIsGestor()}
+                                {this.renderIsGestorC()}
 
                                 <Link to="/ayuda" className="navbar-item" onClick={this.handleClick}>
                                     Ayuda&nbsp;&nbsp;

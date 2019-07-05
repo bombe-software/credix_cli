@@ -22,7 +22,7 @@ class Perfil extends GenericForm {
                         <span className="icon has-text-info">
                             <i className="fa fa-check-circle" aria-hidden="true"></i>
                         </span> Aprobado
-            </div>
+                </div>
                 );
         } if (status === "Rechazado")
             return (
@@ -32,17 +32,25 @@ class Perfil extends GenericForm {
                     </span> Rechazado
             </div>
             );
-        else return <div>unkown</div>
+        else return (
+                <div>
+                    <span className="icon has-text-warning">
+                        <i className="fa fa-minus-circle" aria-hidden="true"></i>
+                    </span> Pendiente
+            </div>
+        )
     }
 
     renderSolicitudes() {
-        return this.props.data.cliente.solicitud.map(({ id, cantidad, status }) => {
+        return this.props.data.cliente.solicitud.map(({ id, cantidad, fecha, status }) => {
             return (
                 <div className="menu" key={id}>
                     <ul className="menu-list">
                         <li key={id}>
-                            <Link to={`${this.props.location.pathname}/solicitud/${id}`}  params={{ testvalue: "hello" }}>{cantidad}&nbsp;&nbsp;&nbsp;  {this.renderStatus(status)} </Link>
+                            <Link to={`${this.props.location.pathname}/solicitud/${id}`}>Cantidad: {cantidad} Fecha: {fecha}
+                            {this.renderStatus(status)} </Link>
                         </li>
+                        <hr/>
                     </ul>
                 </div>
             );
@@ -52,8 +60,8 @@ class Perfil extends GenericForm {
 
     render() {
         if (this.props.data.loading) return (<div>Loading..</div>)
+        if(!this.props.data.cliente) {  return<div>No existe este usuario</div>}
         const cliente = this.props.data.cliente;
-        console.log(this.props);
         return (
             <div>
                 <section className="hero is-large">
@@ -66,9 +74,6 @@ class Perfil extends GenericForm {
                                     </h1>
                                     <br />
                                     <p className="subtitle">
-                                        <strong>Edad:</strong> {cliente.edad}
-                                    </p>
-                                    <p className="subtitle">
                                         <strong>Domicilio:</strong> {cliente.domicilio}
                                     </p>
                                     <p className="subtitle">
@@ -78,9 +83,9 @@ class Perfil extends GenericForm {
                                         <strong>RFC: </strong>{cliente.rfc}
                                     </p>
                                     <p className="subtitle">
-                                        <strong>Solicitudes:</strong> {cliente.solicitud}
+                                        <strong>Solicitudes:</strong> 
                                     </p>
-                                    <br />
+                                    <hr/>
                                     {this.renderSolicitudes()}
                                 </div>
                             </div>
@@ -90,7 +95,7 @@ class Perfil extends GenericForm {
                 <WaveBackground />
             </div>
         );
-    }
+}
 }
 
 export default graphql(cliente, {

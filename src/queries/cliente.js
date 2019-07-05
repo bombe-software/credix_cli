@@ -7,10 +7,12 @@ query data($id: ID!) {
       nombre,
       telefono,
       solicitud{
-          id
+          id,
+          cantidad,
+          status,
+          fecha
       }
       domicilio,
-      edad,
       curp,
       rfc
     }

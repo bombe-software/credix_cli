@@ -29,6 +29,7 @@ import RegistroGestor from './registro/registro_gestor';
 
 //Gestor
 import Solicitud from './gestor/solicitud_credito';
+import Solicitud3 from './gestor/solicitud_2';
 import Clientes from './gestor/clientes';
 import PerfilC from './gestor/perfil_cliente';
 import Solicitud2 from './gestor/solicitud';
@@ -88,6 +89,7 @@ class App extends Component {
             <Route path="/validacion" component={Validacion} />
             <Route path="/clientes/:id" component={PerfilC} />
             <Route path="/clientes" component={Clientes} />
+            <Route path="/solicitud_confirmacion" component={Solicitud3} />
             <Route path="/solicitud" component={Solicitud2} />
             <Route component={NotFound} />
           </Switch>

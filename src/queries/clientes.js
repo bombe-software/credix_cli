@@ -4,7 +4,8 @@ export default gql`
 {
     clientes{
       id,
-      nombre 
+      nombre,
+      rfc 
     }
 }
 `;

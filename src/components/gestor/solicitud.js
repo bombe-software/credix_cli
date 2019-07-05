@@ -1,12 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { graphql } from 'react-apollo';
-import GenericForm from '../reutilizables/generic_form';
 import { Link } from 'react-router-dom';
 
-import clientes from './../../queries/clientes';
+import solicitud from './../../queries/solicitud';
 import WaveBackground from '../reutilizables/wave_background';
 
-class Cliente extends GenericForm {
+class Solicitud extends Component {
 
     constructor(props) {
         super(props);
@@ -63,4 +62,4 @@ class Cliente extends GenericForm {
     }
 }
 
-export default graphql(clientes)(Cliente);
+export default graphql(solicitud)(Solicitud);

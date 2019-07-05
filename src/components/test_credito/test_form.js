@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
 //import io from 'socket.io-client';
-import WebcamCapture from "./webcam_capture";
+//import WebcamCapture from "./webcam_capture";
 import WaveBackground from '../reutilizables/wave_background';
 class Test extends GenericForm {
 

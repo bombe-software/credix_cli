@@ -62,7 +62,7 @@ class Solicitud extends GenericForm {
                                         onSubmit={this.onSubmit}
                                         validate={values => {
                                             const errors = {};
-                                            let ra = /^[+]?([0-9])$/;
+                                            //let ra = /^[+]?([0-9])$/;
                                             if (!values.nombre) {
                                                 errors.nombre = "Escriba el nombre completo";
                                             }

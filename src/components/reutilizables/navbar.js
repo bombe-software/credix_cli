@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import usuario_in from '../../queries/usuario';
 import logout from "./../../mutations/especiales/logout";
-class Navbar extends Component {
 
+class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,14 +24,13 @@ class Navbar extends Component {
     }
 
     renderIsInstitucion() {
-        console.log(this.props);
         if (this.props.data.usuario != null) {
             if (this.props.data.usuario.tipo_usuario === "Institucion") {
                 return (
                     <Link to="/generarToken" className="navbar-item" onClick={this.handleClick}>
                         Agregar Gestor&nbsp;&nbsp;
-            <span className="icon has-text-info">
-                            <i className="fa fa-home" aria-hidden="true"></i>
+                        <span className="icon has-text-warning">
+                            <i className="fa fa-money" aria-hidden="true"></i>
                         </span>
                     </Link>
                 );
@@ -39,21 +38,19 @@ class Navbar extends Component {
         }
     }
     renderIsGestor() {
-        console.log(this.props);
         if (this.props.data.usuario != null) {
             if (this.props.data.usuario.tipo_usuario === "Gestor") {
                 return (
                     <Link to="/solicitud_credito" className="navbar-item" onClick={this.handleClick}>
-                        Solicitud de credito&nbsp;&nbsp;
-            <span className="icon has-text-info">
-                            <i className="fa fa-home" aria-hidden="true"></i>
+                        Solicitud de crédito&nbsp;&nbsp;
+            <span className="icon has-text-dark">
+                            <i className="fa fa-edit" aria-hidden="true"></i>
                         </span>
                     </Link>
                 );
             }
         }
     }
-
     logout() {
         this.props.mutate({
             refetchQueries: [{ query: usuario_in }]
@@ -83,7 +80,7 @@ class Navbar extends Component {
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             <div className="navbar-item is-light has-dropdown is-hoverable" onClick={this.handleClick}>
-                                <Link to="/config_cuenta" className="navbar-item">{this.props.data.usuario.nombre_usuario}</Link>
+                                <Link to="/config_cuenta" className="navbar-item">@{this.props.data.usuario.nombre_usuario}</Link>
                                 <div className="navbar-dropdown is-right">
                                     <Link to="/" className="navbar-item" onClick={this.logout}>Cerrar sesión</Link>
                                 </div>
@@ -99,7 +96,7 @@ class Navbar extends Component {
     }
 
     render() {
-        if (this.props.data.loading) return (<div>Loading</div>)
+        if (this.props.data.loading) return (<div>Loading...</div>)
         return (
             <div className='is-light'>
                 <nav className="navbar is-transparent ">
@@ -118,14 +115,14 @@ class Navbar extends Component {
                         <div className="navbar-start">
                             <div className="navbar-item">
                                 <Link to="/" className="navbar-item" onClick={this.handleClick}>
-                                    Home&nbsp;&nbsp;
+                                    Inicio&nbsp;&nbsp;
                                  <span className="icon has-text-info">
                                         <i className="fa fa-home" aria-hidden="true"></i>
                                     </span>
                                 </Link>
-                                { this.renderIsInstitucion() }
-                                { this.renderIsGestor() }
-                                
+                                {this.renderIsInstitucion()}
+                                {this.renderIsGestor()}
+
                                 <Link to="/ayuda" className="navbar-item" onClick={this.handleClick}>
                                     Ayuda&nbsp;&nbsp;
                                  <span className="icon has-text-primary">

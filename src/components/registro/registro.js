@@ -15,7 +15,6 @@ class Registro extends GenericForm {
         }
         this.onSubmit = this.onSubmit.bind(this);
     }
-
     async onSubmit(values) {
         console.log(this.props);
         const {
@@ -27,16 +26,16 @@ class Registro extends GenericForm {
             variables: {
                 email, nombre, nombre_usuario, password, sexo, token
             }
-        })
-            .then(() => this.props.history.push('/login'))
-            .catch((res) => {
-                if (res.graphQLErrors) {
-                    const errors = res.graphQLErrors.map(error => error.message);
-                    const error = errors[0];
-                    this.setState({ error });
-                }
+        }).then(() => this.props.history.push({
+            pathname: '/login',
+            state: { sucess: true }
+        })).catch((res) => {
+            if (res.graphQLErrors) {
+                const errors = res.graphQLErrors.map(error => error.message);
+                const error = errors[0];
+                this.setState({ error });
             }
-            )
+        })
     }
     render() {
         return (
@@ -82,6 +81,13 @@ class Registro extends GenericForm {
                                             if (!values.nombre_usuario) {
                                                 errors.nombre_usuario = "Escriba un nombre de usuario";
                                             }
+                                            if (values.nombre_usuario !== undefined) {
+                                                var ra = /^[a-z0-9]+$/i;
+                                                if (!ra.test(values.nombre_usuario)) {
+                                                    errors.nombre_usuario = "Solo puede contener alfa numericos y sin espacios";
+                                                }
+                                            }
+
                                             if (!values.sexo) {
                                                 errors.sexo = "Seleccione una opcion";
                                             }
@@ -92,10 +98,18 @@ class Registro extends GenericForm {
                                             if (!values.email) {
                                                 errors.email = "Ingrese su email electronico";
                                             }
+                                            if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                                                errors.email = 'Correo inválido';
+                                            }
                                             if (!values.password) {
                                                 errors.password = "Ingrese su password";
                                             }
-
+                                            if (values.password !== undefined) {
+                                                var re = /^(?=(?:.*\d){1})(?=(?:.*[A-Z]){1})(?=(?:.*[a-z]){1})\S{6,}$/;
+                                                if (!re.test(values.password)) {
+                                                    errors.password = "Min. 6 caractéres, 1 mayuscula, 1 minuscula y sin espacios";
+                                                }
+                                            }
                                             if (values.password !== values.rpassword) {
                                                 errors.rpassword = "No coinciden sus passwords";
                                             }

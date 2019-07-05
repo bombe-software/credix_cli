@@ -5,11 +5,12 @@ import Checkbox from '@material-ui/core/Checkbox'
 
 class GenericForm extends Component {
 
-  renderTextField({ input: { value, name, onChange }, label, meta, ...rest }) {
+  renderTextField({ input: { value, name, onChange, type }, label, meta, ...rest }) {
     return (
       <TextField
         {...rest}
         label={label}
+        type={type}
         name={name}
         helperText={meta.touched ? meta.error : undefined}
         error={meta.error && meta.touched}
@@ -69,8 +70,10 @@ class GenericForm extends Component {
     return (
       <TextField
         {...rest}
+        fullWidth
         name={name}
         multiline
+        rows={4}
         helperText={meta.touched ? meta.error : undefined}
         error={meta.error && meta.touched}
         onChange={onChange}

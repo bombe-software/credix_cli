@@ -50,7 +50,7 @@ class Test extends GenericForm {
                                     <br />
                                     <p className="subtitle has-text-centered">
                                         Bievenido. Realice estas preguntas al cliente para detectar mediante
-                                        sus respuestas y sus gestos faciales si tiene una anomalia en su 
+                                        sus respuestas y sus gestos faciales si tiene una anomalia en su
                                         comportamiento.
                     </p>
                                     <br />

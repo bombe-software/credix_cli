@@ -18,12 +18,11 @@ class WebcamCapture extends React.Component {
   };
 
 
-/*
+
   async componentDidMount() {
-    model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
+    //model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
     setInterval(this.capture, 300);
   }
-*/
 
   capture() {
     if (this.webcam.getScreenshot()) {
@@ -44,7 +43,7 @@ class WebcamCapture extends React.Component {
       //console.log(prediction);
       const array_result = prediction.argMax().dataSync();
       */
-      console.log(array_result);
+      //console.log(array_result);
     }
   }
 

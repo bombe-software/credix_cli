@@ -75,7 +75,7 @@ class App extends Component {
             <Route path="/acerca_de" component={AcercaDe} />
             <Route path="/FAQ" component={FAQ}/>
             <Route path="/ayuda" component={Ayuda}/>
-            <Route path="/test" component={Test} />
+            <Route path="/solicitud_credito/:id" component={Test} />
             <Route path="/registro/:token" component={Registro} />
             <Route path="/registro" component={Registro} />
             <Route path="/registro_gestor" component={RegistroGestor} />

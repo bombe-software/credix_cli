@@ -19,7 +19,7 @@ class Cliente extends GenericForm {
                 <div className="menu" key={id}>
                     <ul className="menu-list">
                         <li key={id}>
-                            <Link to={`clientes/${id}`}>{nombre}&nbsp;&nbsp;&nbsp; {rfc}</Link>
+                            <Link to={`/clientes/${id}`}><strong>Nombre: </strong>{nombre}&nbsp;&nbsp;&nbsp; <strong>RFC: </strong>{rfc}</Link>
                         </li>
                     </ul>
                 </div>
@@ -39,7 +39,7 @@ class Cliente extends GenericForm {
                                 Registro de cliente
                             </h1>
                             <h2 className="subtitle">
-                                A continuación, se les mostrara los clientes que ha registrado con sus solicitudes hechas a usted.
+                                A continuación, se les mostrará los clientes que ha registrado con sus solicitudes hechas a usted.
                             </h2>
                         </div>
                     </div>
@@ -51,7 +51,6 @@ class Cliente extends GenericForm {
                                 <div className="box has-text-centered" style={{ padding: "48px" }}>
                                     <div className="has-text-centered title">Clientes registrados</div>
                                     {this.renderClientes()}
-
                                 </div>
                             </div>
                         </div>

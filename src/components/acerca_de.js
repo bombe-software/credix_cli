@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import WaveBackground from './reutilizables/wave_background';
 
 class AcercaDe extends Component {
@@ -35,17 +34,16 @@ class AcercaDe extends Component {
                                     </div>
 
                                     <div className="content">
-                                        Front-end and Back-end programmer <Link href="https://github.com/Vicroni" target="_blank" rel="noopener noreferrer">@Vicroni</Link>.
-                                <Link href="#">#UPIITA</Link> <Link href="#">#IPN</Link>
+                                        Front-end and Back-end programmer @Vicroni 
+                                        #UPIITA #IPN
                                         <br></br>
-                                        Member of <Link href="#">#Bombe Software</Link>
+                                        Member of Bombe Software
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="column">
                             <div className="card">
-
                                 <div className="card-content">
                                     <div className="media">
                                         <div className="media-left">
@@ -59,10 +57,10 @@ class AcercaDe extends Component {
                                         </div>
                                     </div>
                                     <div className="content">
-                                        Front-end and Back-end programmer <Link href="http://github.com/MedinaVilla" target="_blank" rel="noopener noreferrer" >@MedinaVilla</Link>.
-                                <Link href="#">#ESCOM</Link> <Link href="#">#IPN</Link>
+                                        Front-end and Back-end programmer @MedinaVilla
+                                        #ESCOM #IPN
                                         <br></br>
-                                        Member of <Link href="#">#Bombe Software</Link>
+                                        Member of #Bombe Software
                                     </div>
                                 </div>
                             </div>
@@ -82,10 +80,10 @@ class AcercaDe extends Component {
                                         </div>
                                     </div>
                                     <div className="content">
-                                        Front-end and Back-end programmer <Link href="https://github.com/Ruben35" target="_blank" rel="noopener noreferrer">@Ruben35</Link>.
-                                <Link href="#">#ESCOM</Link> <Link href="#">#IPN</Link>
+                                        Front-end and Back-end programmer @Ruben35.
+                                        #ESCOM #IPN
                                         <br></br>
-                                        Member of <Link href="#">#Bombe Software</Link>
+                                        Member of #Bombe Software
                                     </div>
                                 </div>
                             </div>
@@ -105,10 +103,10 @@ class AcercaDe extends Component {
                                         </div>
                                     </div>
                                     <div className="content">
-                                        Designer and Front-end programmer <Link href="https://github.com/HGWells07" target="_blank" rel="noopener noreferrer">@HGWells07</Link>.
-                                    <Link href="#">#ESFM</Link> <Link href="#">#IPN</Link>
+                                        Designer and Front-end programmer @HGWells07
+                                        #ESFM #IPN
                                         <br></br>
-                                        Member of <Link href="#">#Bombe Software</Link>
+                                        Member of #Bombe Software
                                     </div>
                                 </div>
                             </div>

@@ -29,6 +29,7 @@ import RegistroGestor from './registro/registro_gestor';
 
 //Gestor
 import Solicitud from './gestor/solicitud_credito';
+import Solicitud2 from './gestor/solicitud';
 
 // Crear el link
 const httpLink = createHttpLink({
@@ -82,6 +83,7 @@ class App extends Component {
             <Route path="/generarToken" component={Token} />
             <Route path="/solicitud_credito" component={Solicitud} />
             <Route path="/validacion" component={Validacion} />
+            <Route path="/solicitud" component={Solicitud2} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

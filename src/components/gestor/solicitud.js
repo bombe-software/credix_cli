@@ -5,10 +5,12 @@ import GenericForm from '../reutilizables/generic_form';
 //import WebcamCapture from "./webcam_capture";
 import { graphql } from 'react-apollo';
 import WaveBackground from '../reutilizables/wave_background';
-import addTest from '../../mutations/add/test';
+
+import addSolicitud from '../../mutations/add/solicitud';
+import usuario_in from '../../queries/usuario';
 
 
-class Test extends GenericForm {
+class Solicitud extends GenericForm {
 
     constructor(props) {
         super(props);
@@ -124,4 +126,4 @@ class Test extends GenericForm {
     }
 }
 
-export default graphql(addTest)(Test);
+export default graphql(addSolicitud)(graphql(usuario_in)(Solicitud));

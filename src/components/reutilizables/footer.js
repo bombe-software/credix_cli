@@ -46,35 +46,35 @@ class Footer extends Component {
               </p>          
             </div>
             <div className="column is-3 is-10-mobile is-offset-1-mobile">
-            <a href="http://www.bombesoftware.com">
+            <a href="http://www.bombesoftware.com" target="_blank" rel="noopener noreferrer">
               <img src="../../assets/img/bombe-text-logo.png" alt="Bombe" width="112" height="28" />
             </a>
               <br /><br />
               <p>
-                <a href="http://www.bombesoftware.com/">Bombe Software</a>
+                <a href="http://www.bombesoftware.com/" target="_blank" rel="noopener noreferrer">Bombe Software</a>
               </p>
               <p>
-                <a href="http://www.bombesoftware.com/about.html">Acerca de</a>
+                <a href="http://www.bombesoftware.com/about.html" target="_blank" rel="noopener noreferrer">Acerca de</a>
               </p>
               <p>
-                <a href="http://www.bombesoftware.com/services.html">Servicios</a>
+                <a href="http://www.bombesoftware.com/services.html" target="_blank" rel="noopener noreferrer">Servicios</a>
               </p>
               <p>
-                <a href="http://www.bombesoftware.com/contact.php">Contacto</a>
+                <a href="http://www.bombesoftware.com/contact.php" target="_blank" rel="noopener noreferrer">Contacto</a>
               </p>
               <hr />
               <p>
                 {/* eslint-disable-next-line */}
-                <a href="http://www.bombesoftware.com"><i className="fa fa-globe" aria-hidden="true"></i></a>
+                <a href="http://www.bombesoftware.com" target="_blank" rel="noopener noreferrer"><i className="fa fa-globe" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 {/* eslint-disable-next-line */}
-                <a href="https://www.facebook.com/bombesoftware"><i className="fa fa-facebook-official" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/bombesoftware" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook-official" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 {/* eslint-disable-next-line */}
-                <a href="https://twitter.com/bombesoftware"><i className="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/bombesoftware" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" aria-hidden="true"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 {/* eslint-disable-next-line */}
-                <a href="https://instagram.com/bombesoftware"><i className="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://instagram.com/bombesoftware" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" aria-hidden="true"></i></a>
               
               </p>
             </div>

@@ -52,6 +52,7 @@ class Perfil extends GenericForm {
 
     render() {
         if (this.props.data.loading) return (<div>Loading..</div>)
+        if(!this.props.data.cliente) {  return<div>No existe este usuario</div>}
         const cliente = this.props.data.cliente;
         console.log(this.props);
         return (
@@ -65,9 +66,6 @@ class Perfil extends GenericForm {
                                         {cliente.nombre}
                                     </h1>
                                     <br />
-                                    <p className="subtitle">
-                                        <strong>Edad:</strong> {cliente.edad}
-                                    </p>
                                     <p className="subtitle">
                                         <strong>Domicilio:</strong> {cliente.domicilio}
                                     </p>
@@ -90,7 +88,7 @@ class Perfil extends GenericForm {
                 <WaveBackground />
             </div>
         );
-    }
+}
 }
 
 export default graphql(cliente, {

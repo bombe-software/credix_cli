@@ -10,7 +10,6 @@ query data($id: ID!) {
           id
       }
       domicilio,
-      edad,
       curp,
       rfc
     }

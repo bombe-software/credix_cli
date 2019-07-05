@@ -1,38 +1,39 @@
 import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
+import WebcamCapture from "./webcam_capture";
 import WaveBackground from '../reutilizables/wave_background';
 class Test extends GenericForm {
 
     constructor() {
         super()
-        this.webcam = React.createRef()
+        this.canvas = React.createRef();
     }
 
     async onSubmit(values) {
         console.log(values);
     }
-
-    renderWebCam() {
-        const socket = io.connect('http://localhost:9000');
-        socket.on('image', (image) => {
-            const imageElm = this.webcam.current;
-            imageElm.src = `data:image/jpeg;base64,${image}`;
-        });
-    }
-
+    /*
+        renderWebCam() {
+            const socket = io.connect('http://localhost:9000');
+            socket.on('image', (image) => {
+                const imageElm = this.webcam.current;
+                imageElm.src = `data:image/jpeg;base64,${image}`;
+            });
+        }
+    */
     render() {
-        this.renderWebCam();
+        //this.renderWebCam();
         return (
             <div>
-                <section class="hero is-primary">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
+                <section className="hero is-primary">
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title">
                                 Test de credito
                             </h1>
-                            <h2 class="subtitle">
+                            <h2 className="subtitle">
                                 Comience el test y verifica si es candidato para el credito
                             </h2>
                         </div>
@@ -50,10 +51,14 @@ class Test extends GenericForm {
                                     <br />
                                     <p className="subtitle has-text-centered">
                                         Bievenido. Realice estas preguntas al cliente para detectar mediante
-                                        sus respuestas y sus gestos faciales si tiene una anomalia en su 
+                                        sus respuestas y sus gestos faciales si tiene una anomalia en su
                                         comportamiento.
                     </p>
                                     <br />
+                                    <WebcamCapture canvas={this.canvas} />
+                                    <div >
+                                        <canvas ref={this.canvas}></canvas>
+                                    </div>
                                     <Form
                                         onSubmit={this.onSubmit}
                                         validate={values => {
@@ -82,7 +87,7 @@ class Test extends GenericForm {
                                         }}
                                         render={({ handleSubmit, reset, submitting, pristine, values }) => (
                                             <form onSubmit={handleSubmit}>
-                                                <img ref={this.webcam} alt="webcam" />
+
                                                 <div className="level">
                                                     <div className="level-item">
                                                         <Field name="nombre"

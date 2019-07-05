@@ -90,7 +90,6 @@ class AcercaDe extends Component {
                                 </div>
                             </div>
                         </div>
-
                         <div className="column">
                             <div className="card">
                                 <div className="card-content">
@@ -131,32 +130,32 @@ class AcercaDe extends Component {
                     <div className="tile is-ancestor">
                         <div className="tile is-parent">
                             <article className="is-child box">
-                            <p className="title has-text-centered">Node.js</p>
-                            <p className="subtitle has-text-centered">Entorno de ejecución de JavaScript </p>
-                            <figure className="image container is-128x128">
-                                <img src="/img/acerca_de/nodejs.png" alt="node.js"></img>
-                            </figure><br></br>
-                            <p className="has-text-centered">La principal base del proyecto para poder realizar diversas de sus acciones</p>
+                                <p className="title has-text-centered">Node.js</p>
+                                <p className="subtitle has-text-centered">Entorno de ejecución de JavaScript </p>
+                                <figure className="image container is-128x128">
+                                    <img src="/img/acerca_de/nodejs.png" alt="node.js"></img>
+                                </figure><br></br>
+                                <p className="has-text-centered">La principal base del proyecto para poder realizar diversas de sus acciones</p>
                             </article>
                         </div>
                         <div className="tile is-parent">
                             <article className="is-child box">
-                            <p className="title has-text-centered">React</p>
-                            <p className="subtitle has-text-centered">Biblioteca de JavaScript para construir interfaces de usuario</p>
-                            <figure className="image container is-128x128">
-                                <img src="/img/acerca_de/react.png" alt="react"></img>
-                            </figure>
-                            <p className="has-text-centered">Parte fundamental para realizar una UI bien organizada y facilitandonos el desarrollo</p>
+                                <p className="title has-text-centered">React</p>
+                                <p className="subtitle has-text-centered">Biblioteca de JavaScript para construir interfaces de usuario</p>
+                                <figure className="image container is-128x128">
+                                    <img src="/img/acerca_de/react.png" alt="react"></img>
+                                </figure>
+                                <p className="has-text-centered">Parte fundamental para realizar una UI bien organizada y facilitandonos el desarrollo</p>
                             </article>
                         </div>
                         <div className="tile is-parent">
                             <article className="is-child box">
-                            <p className="title has-text-centered">Python</p>
-                            <p className="subtitle has-text-centered">Lenguaje de programación comunmente utilizado para IA</p>
-                            <figure className="image container is-128x128">
-                                <img src="/img/acerca_de/python.png" alt="python"></img>
-                            </figure>
-                            <p className="has-text-centered">Motor de todas nuestras herramientas que hacen uso de la IA</p>
+                                <p className="title has-text-centered">Python</p>
+                                <p className="subtitle has-text-centered">Lenguaje de programación comunmente utilizado para IA</p>
+                                <figure className="image container is-128x128">
+                                    <img src="/img/acerca_de/python.png" alt="python"></img>
+                                </figure>
+                                <p className="has-text-centered">Motor de todas nuestras herramientas que hacen uso de la IA</p>
                             </article>
                         </div>
                     </div>

@@ -44,7 +44,7 @@ class WebcamCapture extends React.Component {
       //console.log(prediction);
       const array_result = prediction.argMax().dataSync();
       */
-      console.log(array_result);
+      // console.log(array_result);
     }
   }
 

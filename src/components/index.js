@@ -29,7 +29,7 @@ import RegistroGestor from './registro/registro_gestor';
 
 //Gestor
 import Solicitud from './gestor/solicitud_credito';
-import Solicitud2 from './gestor/solicitud';
+import Solicitud2 from './gestor/solicitud_2';
 
 // Crear el link
 const httpLink = createHttpLink({

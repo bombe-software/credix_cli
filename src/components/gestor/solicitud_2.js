@@ -10,7 +10,7 @@ import addSolicitud from '../../mutations/add/solicitud';
 import usuario_in from '../../queries/usuario';
 
 
-class Solicitud extends GenericForm {
+class Solicitud2 extends GenericForm {
 
     constructor(props) {
         super(props);
@@ -24,7 +24,9 @@ class Solicitud extends GenericForm {
     }
 
     async onSubmit(values) {
-        const variables = { ...values, cliente: this.state.id };
+        const variables = { ...values, cliente: this.state.id, gestor: this.props.data.usuario.id };
+        console.log(variables)
+        /*
         await this.props.mutate({
             variables
         }).then(() => this.props.history.push({
@@ -37,6 +39,7 @@ class Solicitud extends GenericForm {
                 this.setState({ error });
             }
         })
+        */
     }
     /*
         renderWebCam() {
@@ -58,7 +61,7 @@ class Solicitud extends GenericForm {
                                 Test de credito
                             </h1>
                             <h2 className="subtitle">
-                                Comience el test y verifica si es candidato para el credito
+                               Porfavor indiquenos cuanto es lo que cliente esta solicitando
                             </h2>
                         </div>
                     </div>
@@ -70,13 +73,11 @@ class Solicitud extends GenericForm {
                                 <div className="box" style={{ padding: "48px" }}>
                                     <br />
                                     <h1 className="title has-text-centered">
-                                        Test
+                                        Solicitud
                     </h1>
                                     <br />
                                     <p className="subtitle has-text-centered">
-                                        Bievenido. Realice estas preguntas al cliente para detectar mediante
-                                        sus respuestas y sus gestos faciales si tiene una anomalia en su
-                                        comportamiento.
+                                        Por favor termine de llenar el cuestionario .
                     </p>
                                     <br />
                                     {/**
@@ -96,10 +97,10 @@ class Solicitud extends GenericForm {
                                             <form onSubmit={handleSubmit}>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="promedio_ingresos_mensuales"
+                                                        <Field name="cantidad"
                                                             component={this.renderTextField}
                                                             type='number'
-                                                            label="Promedio de ingresos mensuales"
+                                                            label="Ingrese la cantidad que desea pedir"
                                                         />
                                                     </div>
                                                 </div>
@@ -126,4 +127,4 @@ class Solicitud extends GenericForm {
     }
 }
 
-export default graphql(addSolicitud)(graphql(usuario_in)(Solicitud));
+export default graphql(addSolicitud)(graphql(usuario_in)(Solicitud2));

@@ -76,14 +76,6 @@ class Solicitud extends GenericForm {
                                             if (!values.domicilio) {
                                                 errors.domicilio = "Ingrese el domicilio";
                                             }
-                                            if (!values.edad) {
-                                                errors.edad = "Ingrese la edad";
-                                            }
-                                            /*
-                                            if (!ra.test(values.edad)) {
-                                                errors.edad = "Ingrese una edad válida"
-                                            }
-                                            */
                                             if (!values.curp) {
                                                 errors.curp = "Ingrese el CURP";
                                             }
@@ -120,15 +112,6 @@ class Solicitud extends GenericForm {
                                                     </div>
                                                 </div>
 
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="edad"
-                                                            component={this.renderTextField}
-                                                            label="Edad"
-                                                            type="number"
-                                                        />
-                                                    </div>
-                                                </div>
                                                 <div className="level">
                                                     <div className="level-item">
                                                         <Field name="curp"

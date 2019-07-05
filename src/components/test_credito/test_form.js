@@ -3,20 +3,38 @@ import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
 //import io from 'socket.io-client';
 //import WebcamCapture from "./webcam_capture";
+import { graphql } from 'react-apollo';
 import WaveBackground from '../reutilizables/wave_background';
+import addTest from '../../mutations/add/test';
+
+
 class Test extends GenericForm {
 
     constructor(props) {
         super(props);
         this.state = {
             id: this.props.match.params.id,
-            error: ""
+            error: "",
+            estado_emocional: null
         }
         this.canvas = React.createRef();
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     async onSubmit(values) {
-        console.log(values);
+        const variables = { ...values, cliente: this.state.id };
+        await this.props.mutate({
+            variables
+        }).then(() => this.props.history.push({
+            pathname: '/solicitud',
+            state: { sucess: true }
+        })).catch((res) => {
+            if (res.graphQLErrors) {
+                const errors = res.graphQLErrors.map(error => error.message);
+                const error = errors[0];
+                this.setState({ error });
+            }
+        })
     }
     /*
         renderWebCam() {
@@ -69,77 +87,21 @@ class Test extends GenericForm {
                                         onSubmit={this.onSubmit}
                                         validate={values => {
                                             const errors = {};
-                                            if (!values.nombre) {
-                                                errors.nombre = "Escriba el nombre completo";
-                                            }
-                                            if (/^\s+|\s+$/.test(values.nombre)) {
-                                                errors.nombre = "Escriba un nombre completo válido";
-                                            }
-                                            if (!values.sexo) {
-                                                errors.sexo = "Seleccione una opcion";
-                                            }
 
-                                            if (!values.correo) {
-                                                errors.correo = "Ingrese su correo electronico";
-                                            }
-                                            if (!values.password) {
-                                                errors.password = "Ingrese su password";
-                                            }
-
-                                            if (values.password !== values.rpassword) {
-                                                errors.rpassword = "No coinciden sus passwords";
-                                            }
                                             return errors;
                                         }}
                                         render={({ handleSubmit, reset, submitting, pristine, values }) => (
                                             <form onSubmit={handleSubmit}>
-
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="nombre"
+                                                        <Field name="promedio_ingresos_mensuales"
                                                             component={this.renderTextField}
-                                                            label="Nombre completo"
+                                                            type='number'
+                                                            label="Promedio de ingresos mensuales"
                                                         />
                                                     </div>
                                                 </div>
-
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="sexo"
-                                                            component={this.renderSelectField}
-                                                            label="Sexo"
-                                                        >
-                                                            <option value="-">Seleccione una opcion</option>
-                                                            <option value="male">Femenino</option>
-                                                            <option value="female">Masculino</option>
-
-                                                        </Field>
-                                                    </div>
-                                                </div>
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="correo"
-                                                            component={this.renderTextField}
-                                                            label="Correo electronico"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="password"
-                                                            component={this.renderPasswordField}
-                                                            label="Ingrese su password"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="rpassword"
-                                                            component={this.renderPasswordField}
-                                                            label="Ingrese nuevamente su password"
-                                                        />
-                                                    </div>
-                                                </div>
+                                                
                                                 {/* <code>{this.state.error}</code> */}
                                                 <br />
                                                 <div className="buttons has-text-centered">
@@ -162,4 +124,4 @@ class Test extends GenericForm {
     }
 }
 
-export default Test;
+export default graphql(addTest)(Test);

@@ -1,8 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { graphql } from 'react-apollo';
-import { Link } from 'react-router-dom';
 
-import solicitud from './../../queries/solicitud';
+import addSolicitud from './../../queries/solicitud';
+import usuario_in from './../../queries/usuario';
+import GenericForm from '../reutilizables/generic_form';
+import { Form, Field } from "react-final-form";
 import WaveBackground from '../reutilizables/wave_background';
 
 class Solicitud2 extends GenericForm {

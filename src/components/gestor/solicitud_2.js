@@ -1,26 +1,15 @@
-import React from 'react';
-import { Form, Field } from "react-final-form";
-import GenericForm from '../reutilizables/generic_form';
-//import io from 'socket.io-client';
-//import WebcamCapture from "./webcam_capture";
+import React, {Component} from 'react';
 import { graphql } from 'react-apollo';
+import { Link } from 'react-router-dom';
+
+import solicitud from './../../queries/solicitud';
 import WaveBackground from '../reutilizables/wave_background';
-
-import addSolicitud from '../../mutations/add/solicitud';
-import usuario_in from '../../queries/usuario';
-
 
 class Solicitud2 extends GenericForm {
 
     constructor(props) {
         super(props);
-        this.state = {
-            id: this.props.match.params.id,
-            error: "",
-            estado_emocional: null
-        }
-        this.canvas = React.createRef();
-        this.onSubmit = this.onSubmit.bind(this);
+        this.renderClientes = this.renderClientes.bind(this);
     }
 
     async onSubmit(values) {
@@ -41,24 +30,17 @@ class Solicitud2 extends GenericForm {
         })
         */
     }
-    /*
-        renderWebCam() {
-            const socket = io.connect('http://localhost:9000');
-            socket.on('image', (image) => {
-                const imageElm = this.webcam.current;
-                imageElm.src = `data:image/jpeg;base64,${image}`;
-            });
-        }
-    */
+
+
     render() {
-        //this.renderWebCam();
+        if (this.props.data.loading) return (<div>Loading...</div>)
         return (
             <div>
                 <section className="hero is-primary">
                     <div className="hero-body">
                         <div className="container">
                             <h1 className="title">
-                                Test de credito
+                                Registro de cliente
                             </h1>
                             <h2 className="subtitle">
                                Porfavor indiquenos cuanto es lo que cliente esta solicitando
@@ -122,7 +104,6 @@ class Solicitud2 extends GenericForm {
                 </section>
                 <WaveBackground />
             </div>
-
         );
     }
 }

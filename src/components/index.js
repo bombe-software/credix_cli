@@ -29,7 +29,10 @@ import RegistroGestor from './registro/registro_gestor';
 
 //Gestor
 import Solicitud from './gestor/solicitud_credito';
-import Solicitud2 from './gestor/solicitud_2';
+import Solicitud3 from './gestor/solicitud_2';
+import Clientes from './gestor/clientes';
+import PerfilC from './gestor/perfil_cliente';
+import Solicitud2 from './gestor/solicitud';
 
 // Crear el link
 const httpLink = createHttpLink({
@@ -77,12 +80,16 @@ class App extends Component {
             <Route path="/FAQ" component={FAQ}/>
             <Route path="/ayuda" component={Ayuda}/>
             <Route path="/solicitud_credito/:id" component={Test} />
+            
             <Route path="/registro/:token" component={Registro} />
             <Route path="/registro" component={Registro} />
             <Route path="/registro_gestor" component={RegistroGestor} />
             <Route path="/generarToken" component={Token} />
             <Route path="/solicitud_credito" component={Solicitud} />
             <Route path="/validacion" component={Validacion} />
+            <Route path="/clientes/:id" component={PerfilC} />
+            <Route path="/clientes" component={Clientes} />
+            <Route path="/solicitud_confirmacion" component={Solicitud3} />
             <Route path="/solicitud" component={Solicitud2} />
             <Route component={NotFound} />
           </Switch>

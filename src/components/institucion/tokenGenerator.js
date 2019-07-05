@@ -22,7 +22,7 @@ class TokenGenerator extends Component {
             salt: 'Token generator and tell me how much it is',
             timestampMap: 'abdjmopwxt', // 10 chars array for obfuscation proposes
         });
-        var token = TokenGenerator.generate();
+        let token = TokenGenerator.generate();
 
         this.props.generateToken({
             variables: {
@@ -30,7 +30,6 @@ class TokenGenerator extends Component {
             }
         }).then(() => this.setState({ token }))
             .catch(err => console.log(err))
-        
     }
 
     render() {
@@ -47,14 +46,14 @@ class TokenGenerator extends Component {
                                     <br />
                                     <p className="subtitle has-text-centered">
                                         Hola. Proporcione el token generado a sus gestores de bancos para que puedan
-                                        registrarse a la plataforma para su institucion.
+                                        registrarse a la plataforma para su institución.
                                     </p>
                                     <br />
                                     <Form
                                         onSubmit={this.onSubmit}
                                         validate={values => {
                                             const errors = {};
-                      
+
                                             return errors;
                                         }}
                                         render={({ handleSubmit, reset, submitting, pristine, values }) => (
@@ -80,12 +79,10 @@ class TokenGenerator extends Component {
     }
 }
 
-
 export default compose(
     graphql(token, {
         name: 'generateToken'
     }),
     graphql(usuario, {
         name: 'usuario_in'
-    })
-)(TokenGenerator);
+    }))(TokenGenerator);

@@ -1,14 +1,35 @@
 import React from 'react';
 import { Form, Field } from "react-final-form";
+import { graphql } from 'react-apollo';
 import GenericForm from '../reutilizables/generic_form';
 import WaveBackground from '../reutilizables/wave_background';
+
+import addCliente from '../../mutations/add/cliente';
+
 class Solicitud extends GenericForm {
 
-    async onSubmit(values) {
-        console.log(values);
+    constructor(props) {
+        super(props);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
+    async onSubmit(values) {
+        const { nombre, domicilio, curp, rfc } = values;
+        const telefono = values.telefono.toString();
+        const edad = parseInt(values.edad);
+        const ingresos = parseInt(values.ingresos);
 
+        await this.props.mutate({
+            variables: {
+                nombre, telefono, domicilio, edad, curp, rfc, ingresos
+            }
+        }).then((res) => {
+            this.props.history.push({
+                pathname: `solicitud_credito/${res.data.addCliente.id}`,
+                state: { sucess: true }
+            })
+        }).catch(err => { console.log(err) })
+    }
     render() {
         return (
             <div>
@@ -16,11 +37,10 @@ class Solicitud extends GenericForm {
                     <div className="hero-body">
                         <div className="container">
                             <h1 className="title">
-                                Solicitud de credito
+                                Solicitud de crédito
                             </h1>
                             <h2 className="subtitle">
-                                Comience el registro del cliente para tener un historial de sus clientes con sus
-                                respectivos prestamos.
+                                Comience la evaluación del préstamo de crédito al cliente.
                             </h2>
                         </div>
                     </div>
@@ -33,36 +53,48 @@ class Solicitud extends GenericForm {
                                     <br />
                                     <h1 className="title has-text-centered">
                                         Información del cliente
-                    </h1>
+                                    </h1>
                                     <br />
                                     <p className="subtitle has-text-centered">
-                                        En este formulario, llene los campos de los datos proporcionados por el cliente para tener un 
-                                        registro en la base datos y asi, comenzar con el test analitico.
-                    </p>
+                                        En este formulario, llene los campos de los datos proporcionados por el cliente para tener un
+                                        registro en la base de datos y así, comenzar con el test analítico.
+                                    </p>
                                     <br />
                                     <Form
                                         onSubmit={this.onSubmit}
                                         validate={values => {
                                             const errors = {};
+                                            let ra = /^[+]?([0-9])$/;
                                             if (!values.nombre) {
                                                 errors.nombre = "Escriba el nombre completo";
                                             }
                                             if (/^\s+|\s+$/.test(values.nombre)) {
                                                 errors.nombre = "Escriba un nombre completo válido";
                                             }
-                                            if (!values.sexo) {
-                                                errors.sexo = "Seleccione una opcion";
+                                            if (!values.telefono) {
+                                                errors.telefono = "Ingrese su teléfono";
                                             }
 
-                                            if (!values.correo) {
-                                                errors.correo = "Ingrese su correo electronico";
+                                            if (!values.domicilio) {
+                                                errors.domicilio = "Ingrese el domicilio";
                                             }
-                                            if (!values.password) {
-                                                errors.password = "Ingrese su password";
+                                            if (!values.edad) {
+                                                errors.edad = "Ingrese la edad";
                                             }
-
-                                            if (values.password !== values.rpassword) {
-                                                errors.rpassword = "No coinciden sus passwords";
+                                            if (!ra.test(values.edad)) {
+                                                errors.edad = "Ingrese una edad válida"
+                                            }
+                                            if (!values.curp) {
+                                                errors.curp = "Ingrese el CURP";
+                                            }
+                                            if (!values.rfc) {
+                                                errors.rfc = "Ingrese el RFC";
+                                            }
+                                            if (!values.ingresos) {
+                                                errors.ingresos = "Ingrese el promedio de ingresos mensuales";
+                                            }
+                                            if (ra.test(values.ingresos)) {
+                                                errors.ingresos = "Ingrese un ingreso válido";
                                             }
                                             return errors;
                                         }}
@@ -76,49 +108,62 @@ class Solicitud extends GenericForm {
                                                         />
                                                     </div>
                                                 </div>
-
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="sexo"
-                                                            component={this.renderSelectField}
-                                                            label="Sexo"
-                                                        >
-                                                            <option value="-">Seleccione una opcion</option>
-                                                            <option value="male">Femenino</option>
-                                                            <option value="female">Masculino</option>
-
-                                                        </Field>
-                                                    </div>
-                                                </div>
-                                                <div className="level">
-                                                    <div className="level-item">
-                                                        <Field name="correo"
+                                                        <Field name="telefono"
                                                             component={this.renderTextField}
-                                                            label="Correo electronico"
+                                                            label="Teléfono"
+                                                            type="number"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="password"
-                                                            component={this.renderPasswordField}
-                                                            label="Ingrese su password"
+                                                        <Field name="domicilio"
+                                                            component={this.renderAreaText}
+                                                            label="Domicilio"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="edad"
+                                                            component={this.renderTextField}
+                                                            label="Edad"
+                                                            type="number"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="rpassword"
-                                                            component={this.renderPasswordField}
-                                                            label="Ingrese nuevamente su password"
+                                                        <Field name="curp"
+                                                            component={this.renderTextField}
+                                                            label="CURP"
                                                         />
                                                     </div>
                                                 </div>
-                                                {/* <code>{this.state.error}</code> */}
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="rfc"
+                                                            component={this.renderTextField}
+                                                            label="RFC"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="ingresos"
+                                                            component={this.renderTextField}
+                                                            label="Promedio de ingresos mensuales"
+                                                            type="number"
+                                                        />
+                                                    </div>
+                                                </div>
                                                 <br />
                                                 <div className="buttons has-text-centered">
                                                     <button type="submit" className="button is-primary" disabled={submitting}>
-                                                        Registrarse
+                                                        Siguiente
                                                     </button>
                                                 </div>
                                             </form>
@@ -131,9 +176,8 @@ class Solicitud extends GenericForm {
                 </section>
                 <WaveBackground />
             </div>
-
         );
     }
 }
 
-export default Solicitud;
+export default graphql(addCliente)(Solicitud);

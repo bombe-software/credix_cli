@@ -23,7 +23,6 @@ import Registro from './registro/registro';
 import Token from './institucion/tokenGenerator';
 import Validacion from './registro/validacion';
 import RegistroGestor from './registro/registro_gestor';
-import RegistroCompleto from './registro/registro_completo';
 
 //Gestor
 import Solicitud from './gestor/solicitud_credito';
@@ -66,7 +65,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client} >
         <BrowserRouter>
-         <Navbar/>
+          <Navbar />
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/login" component={Login} />
@@ -74,13 +73,12 @@ class App extends Component {
             <Route path="/registro/:token" component={Registro} />
             <Route path="/registro" component={Registro} />
             <Route path="/registro_gestor" component={RegistroGestor} />
-            <Route path="/registro_completo" component={RegistroCompleto} />
             <Route path="/generarToken" component={Token} />
             <Route path="/solicitud_credito" component={Solicitud} />
             <Route path="/validacion" component={Validacion} />
             <Route component={NotFound} />
           </Switch>
-          <Footer/>
+          <Footer />
         </BrowserRouter>
       </ApolloProvider>
     );

@@ -1,53 +1,46 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
 import { Form, Field } from "react-final-form";
+import { graphql } from 'react-apollo';
 import GenericForm from '../reutilizables/generic_form';
 import WaveBackground from '../reutilizables/wave_background';
-import signup from '../../mutations/especiales/signup';
 
-class Registro extends GenericForm {
+import addCliente from '../../mutations/add/cliente';
+
+class Solicitud extends GenericForm {
 
     constructor(props) {
         super(props);
-        this.state = {
-            token: this.props.match.params.token,
-            error: ""
-        }
         this.onSubmit = this.onSubmit.bind(this);
     }
+
     async onSubmit(values) {
-        console.log(this.props);
-        const {
-            nombre, nombre_usuario, sexo, email, password
-        } = values;
-        const token = this.state.token;
+        const { nombre, domicilio, curp, rfc } = values;
+        const telefono = values.telefono.toString();
+        const edad = parseInt(values.edad);
+        const ingresos = parseInt(values.ingresos);
 
         await this.props.mutate({
             variables: {
-                email, nombre, nombre_usuario, password, sexo, token
+                nombre, telefono, domicilio, edad, curp, rfc, ingresos
             }
-        }).then(() => this.props.history.push({
-            pathname: '/login',
-            state: { sucess: true }
-        })).catch((res) => {
-            if (res.graphQLErrors) {
-                const errors = res.graphQLErrors.map(error => error.message);
-                const error = errors[0];
-                this.setState({ error });
-            }
-        })
+        }).then((res) => {
+            this.props.history.push({
+                pathname: `solicitud_credito/${res.data.addCliente.id}`,
+                state: { sucess: true }
+            })
+        }).catch(err => { console.log(err) })
     }
     render() {
         return (
             <div>
-                <section className="hero is-info">
+                <section className="hero is-primary">
                     <div className="hero-body">
                         <div className="container">
                             <h1 className="title">
-                                Registrate
+                                Solicitud de crédito
                             </h1>
                             <h2 className="subtitle">
-                                Llene los campos requeridos y comience ahora mismo
+                                Comience la evaluación del préstamo de crédito al cliente.
                             </h2>
                         </div>
                     </div>
@@ -57,61 +50,51 @@ class Registro extends GenericForm {
                         <div className="columns">
                             <div className="column is-6-desktop is-10-tablet is-offset-3-desktop is-offset-2-tablet">
                                 <div className="box" style={{ padding: "48px" }}>
-                                    <h1 className=" has-text-weight-semibold is-size-1 has-text-centered has-text-info">
-                                        Registrate
+                                    <br />
+                                    <h1 className="title has-text-centered">
+                                        Información del cliente
                                     </h1>
                                     <br />
                                     <p className="subtitle has-text-centered">
-                                        Registrate en el siguiente formulario para que usted pueda acceder
-                                        a todas las funcionalidades. Ten en cuenta que todos los datos deben
-                                        ser igual a como aperece en su credencial oficial de identificacion.
-                    </p>
+                                        En este formulario, llene los campos de los datos proporcionados por el cliente para tener un
+                                        registro en la base de datos y así, comenzar con el test analítico.
+                                    </p>
                                     <br />
                                     <Form
                                         onSubmit={this.onSubmit}
                                         validate={values => {
                                             const errors = {};
+                                            let ra = /^[+]?([0-9])$/;
                                             if (!values.nombre) {
                                                 errors.nombre = "Escriba el nombre completo";
                                             }
                                             if (/^\s+|\s+$/.test(values.nombre)) {
                                                 errors.nombre = "Escriba un nombre completo válido";
                                             }
-
-                                            if (!values.nombre_usuario) {
-                                                errors.nombre_usuario = "Escriba un nombre de usuario";
-                                            }
-                                            if (values.nombre_usuario !== undefined) {
-                                                var ra = /^[a-z0-9]+$/i;
-                                                if (!ra.test(values.nombre_usuario)) {
-                                                    errors.nombre_usuario = "Solo puede contener alfa numericos y sin espacios";
-                                                }
+                                            if (!values.telefono) {
+                                                errors.telefono = "Ingrese su teléfono";
                                             }
 
-                                            if (!values.sexo) {
-                                                errors.sexo = "Seleccione una opcion";
+                                            if (!values.domicilio) {
+                                                errors.domicilio = "Ingrese el domicilio";
                                             }
-                                            if (!values.sexo) {
-                                                errors.sexo = "Seleccione una opcion";
+                                            if (!values.edad) {
+                                                errors.edad = "Ingrese la edad";
                                             }
-
-                                            if (!values.email) {
-                                                errors.email = "Ingrese su email electronico";
+                                            if (!ra.test(values.edad)) {
+                                                errors.edad = "Ingrese una edad válida"
                                             }
-                                            if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                                                errors.email = 'Correo inválido';
+                                            if (!values.curp) {
+                                                errors.curp = "Ingrese el CURP";
                                             }
-                                            if (!values.password) {
-                                                errors.password = "Ingrese su password";
+                                            if (!values.rfc) {
+                                                errors.rfc = "Ingrese el RFC";
                                             }
-                                            if (values.password !== undefined) {
-                                                var re = /^(?=(?:.*\d){1})(?=(?:.*[A-Z]){1})(?=(?:.*[a-z]){1})\S{6,}$/;
-                                                if (!re.test(values.password)) {
-                                                    errors.password = "Min. 6 caractéres, 1 mayuscula, 1 minuscula y sin espacios";
-                                                }
+                                            if (!values.ingresos) {
+                                                errors.ingresos = "Ingrese el promedio de ingresos mensuales";
                                             }
-                                            if (values.password !== values.rpassword) {
-                                                errors.rpassword = "No coinciden sus passwords";
+                                            if (ra.test(values.ingresos)) {
+                                                errors.ingresos = "Ingrese un ingreso válido";
                                             }
                                             return errors;
                                         }}
@@ -127,53 +110,60 @@ class Registro extends GenericForm {
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="nombre_usuario"
+                                                        <Field name="telefono"
                                                             component={this.renderTextField}
-                                                            label="Nombre  de usuario"
+                                                            label="Teléfono"
+                                                            type="number"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="sexo"
-                                                            component={this.renderSelectField}
-                                                            label="Sexo"
-                                                        >
-                                                            <option value="-">Seleccione una opción</option>
-                                                            <option value="Femenino">Femenino</option>
-                                                            <option value="Masculino">Masculino</option>
-                                                        </Field>
+                                                        <Field name="domicilio"
+                                                            component={this.renderAreaText}
+                                                            label="Domicilio"
+                                                        />
                                                     </div>
                                                 </div>
+
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="email"
+                                                        <Field name="edad"
                                                             component={this.renderTextField}
-                                                            label="email electronico"
+                                                            label="Edad"
+                                                            type="number"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="password"
-                                                            component={this.renderPasswordField}
-                                                            label="Ingrese su password"
+                                                        <Field name="curp"
+                                                            component={this.renderTextField}
+                                                            label="CURP"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="rpassword"
-                                                            component={this.renderPasswordField}
-                                                            label="Ingrese nuevamente su password"
+                                                        <Field name="rfc"
+                                                            component={this.renderTextField}
+                                                            label="RFC"
                                                         />
                                                     </div>
                                                 </div>
-                                                {this.state.error ? <code>{this.state.error}</code> : ""}
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="ingresos"
+                                                            component={this.renderTextField}
+                                                            label="Promedio de ingresos mensuales"
+                                                            type="number"
+                                                        />
+                                                    </div>
+                                                </div>
                                                 <br />
                                                 <div className="buttons has-text-centered">
                                                     <button type="submit" className="button is-primary" disabled={submitting}>
-                                                        Registrarse
+                                                        Siguiente
                                                     </button>
                                                 </div>
                                             </form>
@@ -190,4 +180,4 @@ class Registro extends GenericForm {
     }
 }
 
-export default graphql(signup)(Registro);
+export default graphql(addCliente)(Solicitud);

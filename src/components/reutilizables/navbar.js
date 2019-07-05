@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
+import { graphql } from 'react-apollo';
+import usuario_in from '../../queries/usuario';
+import logout from "./../../mutations/especiales/logout";
 
 class Navbar extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +14,7 @@ class Navbar extends Component {
         this.logout = this.logout.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.renderNavEnd = this.renderNavEnd.bind(this);
+        this.renderIsInstitucion = this.renderIsInstitucion.bind(this);
     }
 
     handleClick() {
@@ -20,13 +23,41 @@ class Navbar extends Component {
         }));
     }
 
+    renderIsInstitucion() {
+        if (this.props.data.usuario != null) {
+            if (this.props.data.usuario.tipo_usuario === "Institucion") {
+                return (
+                    <Link to="/generarToken" className="navbar-item" onClick={this.handleClick}>
+                        Agregar Gestor&nbsp;&nbsp;
+                        <span className="icon has-text-warning">
+                            <i className="fa fa-money" aria-hidden="true"></i>
+                        </span>
+                    </Link>
+                );
+            }
+        }
+    }
+    renderIsGestor() {
+        if (this.props.data.usuario != null) {
+            if (this.props.data.usuario.tipo_usuario === "Gestor") {
+                return (
+                    <Link to="/solicitud_credito" className="navbar-item" onClick={this.handleClick}>
+                        Solicitud de crédito&nbsp;&nbsp;
+            <span className="icon has-text-dark">
+                            <i className="fa fa-edit" aria-hidden="true"></i>
+                        </span>
+                    </Link>
+                );
+            }
+        }
+    }
     logout() {
         this.props.mutate({
-            // refetchQueries: [{ query: usuario_in }]
+            refetchQueries: [{ query: usuario_in }]
         });
     }
     renderNavEnd() {
-        if (true) {
+        if (!this.props.data.usuario) {
             return (
                 <div>
                     <div className="navbar-item ">
@@ -49,9 +80,8 @@ class Navbar extends Component {
                     <div className="navbar-item">
                         <div className="field is-grouped">
                             <div className="navbar-item is-light has-dropdown is-hoverable" onClick={this.handleClick}>
-                                <Link to="/config_cuenta" className="navbar-item">@ola</Link>
+                                <Link to="/config_cuenta" className="navbar-item">@{this.props.data.usuario.nombre_usuario}</Link>
                                 <div className="navbar-dropdown is-right">
-                                    <Link to="/config_cuenta" className="navbar-item">Configuración de la cuenta</Link>
                                     <Link to="/" className="navbar-item" onClick={this.logout}>Cerrar sesión</Link>
                                 </div>
                             </div>
@@ -66,12 +96,13 @@ class Navbar extends Component {
     }
 
     render() {
+        if (this.props.data.loading) return (<div>Loading...</div>)
         return (
             <div className='is-light'>
                 <nav className="navbar is-transparent ">
                     <div className="navbar-brand">
                         <Link className="navbar-item" to="/">
-                            <img src="../../assets/img/credix.png" alt="credix"  />
+                            <img src="../../assets/img/credix.png" alt="credix" />
                         </Link>
 
                         <div className={this.state.isToggleOn ? 'navbar-burger burger is-active' : 'navbar-burger burger'} data-target="nav-demos-menu" onClick={this.handleClick}>
@@ -84,11 +115,14 @@ class Navbar extends Component {
                         <div className="navbar-start">
                             <div className="navbar-item">
                                 <Link to="/" className="navbar-item" onClick={this.handleClick}>
-                                    Home&nbsp;&nbsp;
+                                    Inicio&nbsp;&nbsp;
                                  <span className="icon has-text-info">
                                         <i className="fa fa-home" aria-hidden="true"></i>
                                     </span>
                                 </Link>
+                                {this.renderIsInstitucion()}
+                                {this.renderIsGestor()}
+
                                 <Link to="/ayuda" className="navbar-item" onClick={this.handleClick}>
                                     Ayuda&nbsp;&nbsp;
                                  <span className="icon has-text-primary">
@@ -107,7 +141,7 @@ class Navbar extends Component {
                                         <i className="fa fa-user" aria-hidden="true"></i>
                                     </span>
                                 </Link>
-                               
+
                             </div>
                         </div>
                         <div className="navbar-end">
@@ -119,4 +153,4 @@ class Navbar extends Component {
         )
     }
 }
-export default Navbar;
+export default graphql(logout)(graphql(usuario_in)(Navbar));

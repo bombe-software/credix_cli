@@ -35,6 +35,7 @@ import PerfilC from './gestor/perfil_cliente';
 import Solicitud2 from './gestor/solicitud';
 import Resultados from './gestor/resultados';
 import PerfilS from './gestor/perfil_solicitud';
+import AprobarCreditos from './gestor/aprobar_creditos';
 
 // Crear el link
 const httpLink = createHttpLink({
@@ -95,6 +96,7 @@ class App extends Component {
             <Route path="/solicitud_confirmacion/:id_test/:id_cliente" component={Solicitud3} />
             <Route path="/resultados/:id" component={Resultados} />
             <Route path="/solicitud" component={Solicitud2} />
+            <Route path="/creditos" component={AprobarCreditos} />
             <Route component={NotFound} />
           </Switch>
           <Footer />

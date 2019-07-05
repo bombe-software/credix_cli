@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import WaveBackground from './reutilizables/wave_background';
 
 class AcercaDe extends Component {
 
@@ -116,8 +117,10 @@ class AcercaDe extends Component {
                     <hr></hr>
                     <div className="container">
                         <div className="notification has-text-centered">
-                            <img width="112" height="28" src="/assets/img/bombe-text-logo.png" alt="bombe.png"></img><br></br>
+                            <a href="http://www.bombesoftware.com/about.html" target="_blank" rel="noopener noreferrer">
+                            <img width="112" height="28" src="/assets/img/bombe-text-logo.png" alt="Bombe"></img><br></br>
                             <p className="title is-5">Team</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -158,6 +161,7 @@ class AcercaDe extends Component {
                     </div>
                 </div>
                 <br></br>
+                <WaveBackground/>
             </div>
         );
     }

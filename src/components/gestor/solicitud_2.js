@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 
-import addSolicitud from './../../queries/solicitud';
+import addSolicitud from './../../mutations/add/solicitud';
 import usuario_in from './../../queries/usuario';
 import GenericForm from '../reutilizables/generic_form';
 import { Form, Field } from "react-final-form";
@@ -11,17 +11,21 @@ class Solicitud2 extends GenericForm {
 
     constructor(props) {
         super(props);
-        this.renderClientes = this.renderClientes.bind(this);
+        this.state = {
+            id_test: this.props.match.params.id_test,
+            id_cliente: this.props.match.params.id_cliente
+        };
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     async onSubmit(values) {
-        const variables = { ...values, cliente: this.state.id, gestor: this.props.data.usuario.id };
+        const variables = { cantidad: parseInt(values.cantidad), test: this.state.id_test, cliente: this.state.id_cliente,  gestor: this.props.data.usuario.id };
         console.log(variables)
-        /*
+
         await this.props.mutate({
             variables
-        }).then(() => this.props.history.push({
-            pathname: '/solicitud',
+        }).then((res) => this.props.history.push({
+            pathname: `/resultados/${res.data.addSolicitud.id}`,
             state: { sucess: true }
         })).catch((res) => {
             if (res.graphQLErrors) {
@@ -30,7 +34,6 @@ class Solicitud2 extends GenericForm {
                 this.setState({ error });
             }
         })
-        */
     }
 
 

@@ -22,13 +22,18 @@ class Test extends GenericForm {
     }
 
     async onSubmit(values) {
-        const variables = { ...values, cliente: this.state.id };
+        const variables = 
+        { promedio_ingresos_mensuales: parseInt(values.promedio_ingresos_mensuales) , 
+            cliente: this.state.id };
+
         await this.props.mutate({
             variables
-        }).then(() => this.props.history.push({
-            pathname: '/solicitud',
-            state: { sucess: true }
-        })).catch((res) => {
+        }).then((res) =>{
+            this.props.history.push({
+                pathname: `/solicitud_confirmacion/${res.data.addTest.id}/${variables.cliente}`,
+            })
+        } 
+        ).catch((res) => {
             if (res.graphQLErrors) {
                 const errors = res.graphQLErrors.map(error => error.message);
                 const error = errors[0];

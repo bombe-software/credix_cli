@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
 //import io from 'socket.io-client';
-//import WebcamCapture from "./webcam_capture";
+import WebcamCapture from "./webcam_capture";
 import { graphql } from 'react-apollo';
 import WaveBackground from '../reutilizables/wave_background';
 import addTest from '../../mutations/add/test';
@@ -15,10 +15,17 @@ class Test extends GenericForm {
         this.state = {
             id: this.props.match.params.id,
             error: "",
-            estado_emocional: null
+            estado_emocional_1: null,
+            estado_emocional_2: null
         }
-        this.canvas = React.createRef();
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleEstadoEmocional = this.handleEstadoEmocional.bind();
+    }
+    handleEstadoEmocional(estado_emocional_1, estado_emocional_2 ){
+        this.setState({
+            estado_emocional_1,
+            estado_emocional_2
+        })
     }
 
     async onSubmit(values) {
@@ -82,12 +89,9 @@ class Test extends GenericForm {
                                         comportamiento.
                     </p>
                                     <br />
-                                    {/**
-                                    <WebcamCapture canvas={this.canvas} />
-                                    <div >
-                                        <canvas ref={this.canvas}></canvas>
-                                    </div>
-                                    */}
+
+                                    <WebcamCapture handleEstadoEmocional={this.handleEstadoEmocional} />
+
                                     <Form
                                         onSubmit={this.onSubmit}
                                         validate={values => {

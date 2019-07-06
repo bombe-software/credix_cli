@@ -168,7 +168,7 @@ class Test extends GenericForm {
                                                             <option value="-">Selecciona una opción</option>
                                                             <option value="si">Si</option>
                                                             <option value="no">No</option>
-                                                            </Field>
+                                                        </Field>
                                                     </div>
                                                 </div>
                                                 {/* <div className="level">
@@ -200,65 +200,78 @@ class Test extends GenericForm {
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="prestamo"
+                                                        <Field name="gasto_arrienda"
                                                             component={this.renderTextField}
-                                                            type='number'
-                                                            label="¿De las personas con las que vives, cuantas de ellas se encuentran dentro de la población económicamente activa?"
+                                                            label="Aproximadamente, cuánto gasta en neto arrienda al mes?"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="prestamo"
+                                                        <Field name="gasto_comida"
                                                             component={this.renderTextField}
-                                                            type='number'
-                                                            label="(Si respondió solo yo) ¿Cuánto es el ingreso neto aproximado por mes en el hogar?"
+                                                            label="Aproximadamente, cuánto gasta neto en comida al mes?"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="prestamo"
+                                                        <Field name="gasto_transporte"
                                                             component={this.renderTextField}
-                                                            type='number'
-                                                            label="¿Cuál es el gasto neto de cada mes en gastos fijos (arrienda, servicios básicos, transporte, etc.)?"
+                                                            label="Aproximadamente, cuánto gasta neto en transporte al mes?"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="prestamo"
+                                                        <Field name="gasto_servicios"
                                                             component={this.renderTextField}
-                                                            type='number'
-                                                            label="¿Cuál es el gasto neto de cada mes en deudas que ya tienes?"
+                                                            label="Aproximadamente, cuánto gasta neto en servicios(agua,electricidad,etc) al mes?"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="prestamo"
+                                                        <Field name="gasto_deudas"
                                                             component={this.renderTextField}
-                                                            type='number'
-                                                            label="Usted esta incorporado al trabajo formal?"
+                                                            label="¿Cuál es el gasto neto de cada mes en deudas que ya tiene?"
                                                         />
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
-                                                        <Field name="prestamo"
-                                                            component={this.renderTextField}
-                                                            type='number'
-                                                            label="(En caso de si estar en formal) Proporcione su RFC: (solo para corroborar respuesta anterior) "
-                                                        />
+                                                        <Field name="trabajo_formal"
+                                                            component={this.renderSelectField}
+                                                            label="¿Usted esta incorporado al trabajo formal?"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="si">Si</option>
+                                                            <option value="no">No</option>
+                                                        </Field>
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="trabajo_formal"
+                                                            component={this.renderSelectField}
+                                                            label="¿Usted esta incorporado al trabajo formal?"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="si">Si</option>
+                                                            <option value="no">No</option>
+                                                        </Field>
                                                     </div>
                                                 </div>
                                                 <div className="level">
                                                     <div className="level-item">
                                                         <Field name="prestamo"
-                                                            component={this.renderTextField}
-                                                            type='number'
-                                                            label="¿Recibes tus sueldos en la institución financiera (la que esté haciendo la prueba)?"
-                                                        />
+                                                            component={this.renderSelectField}
+                                                            label="¿Cuenta con seguros? (vida, auto, salud, etc.)"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="si">Si</option>
+                                                            <option value="no">No</option>
+                                                        </Field>
                                                     </div>
                                                 </div>
                                                 <div className="level">

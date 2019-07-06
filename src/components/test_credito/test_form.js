@@ -92,7 +92,7 @@ class Test extends GenericForm {
                     </p>
                                     <br />
 
-                                    {/* <WebcamCapture handleEstadoEmocional={this.handleEstadoEmocional} /> */}
+                                    <WebcamCapture handleEstadoEmocional={this.handleEstadoEmocional}  />
 
                                     <Form
                                         onSubmit={this.onSubmit}

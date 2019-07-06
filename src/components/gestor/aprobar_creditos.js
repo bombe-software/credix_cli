@@ -39,7 +39,7 @@ class AprobarCreditos extends React.Component {
 
                 {this.props.data.solicitudes_gestor.map(credito => {
                     console.log(credito.status)
-                    if(credito.status == 'Pendiente'){
+                    if(credito.status === 'Pendiente'){
                         return (
                             <div className="box" key={credito.id}>
                                 <article className="media">

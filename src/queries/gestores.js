@@ -4,6 +4,7 @@ export default gql`
 {
     gestores{
       id,
+      status
       usuario{
         id,
         nombre

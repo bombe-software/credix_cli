@@ -4,6 +4,7 @@ export default gql`
 query data($id: ID!) {
     gestor(id: $id) {
       id,
+      status,
      	usuario{
         id,
         nombre,

@@ -2,6 +2,7 @@ import React from 'react';
 import GenericForm from '../reutilizables/generic_form';
 import { graphql } from 'react-apollo';
 import gestor from "./../../queries/gestor";
+import deleteGestor from "./../../mutations/delete/gestor";
 import WaveBackground from '../reutilizables/wave_background';
 
 class PerfilG extends GenericForm {
@@ -16,20 +17,29 @@ class PerfilG extends GenericForm {
         }
     }
 
-    deleteGestor() {
+    deleteGestor(id) {
 
         this.state.verificar++;
         if (this.state.verificar === 1) {
             this.setState({ valid: "Si está seguro, vuelva a oprimir el botón" });
         } else
-            console.log("eliminado");
-
+        {
+            this.props.mutate({
+                variables:{
+                    gestor: this.props.data.gestor.id
+                }
+            }).then(()=>{this.props.history.push({
+                pathname: `manage_gestores/`,
+                state: { sucess: true }
+            })})
+        }
     }
 
     render() {
         if (this.props.data.loading) return (<div>Loading..</div>)
         if (!this.props.data.gestor) { return <div>No existe este gestor</div> }
         const gestor = this.props.data.gestor;
+        console.log(this.props);
         return (
             <div>
                 <section className="hero is-large">
@@ -53,6 +63,9 @@ class PerfilG extends GenericForm {
                                     <p className="subtitle">
                                         <strong>Sexo: </strong>{gestor.usuario.sexo}
                                     </p>
+                                    <p className="subtitle">
+                                        <strong>Status: </strong>{gestor.status}
+                                    </p>
                                     <div className="has-text-right-desktop-only">
                                         <div>
                                             <button ref={this.delete} className="button is-danger" onClick={this.deleteGestor}><strong>Eliminar gestor</strong></button>
@@ -73,6 +86,6 @@ class PerfilG extends GenericForm {
     }
 }
 
-export default graphql(gestor, {
+export default graphql (deleteGestor)(graphql(gestor, {
     options: (props) => { return { variables: { id: props.match.params.id } } }
-})(PerfilG);
+})(PerfilG));

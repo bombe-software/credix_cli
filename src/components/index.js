@@ -37,6 +37,10 @@ import Resultados from './gestor/resultados';
 import PerfilS from './gestor/perfil_solicitud';
 import AprobarCreditos from './gestor/aprobar_creditos';
 
+//Institucion
+import ManageGestores from './institucion/manage_gestores';
+import Gestor from './institucion/perfil_gestor';
+
 // Crear el link
 const httpLink = createHttpLink({
   uri: `${api}/graphql`,
@@ -83,7 +87,8 @@ class App extends Component {
             <Route path="/FAQ" component={FAQ}/>
             <Route path="/ayuda" component={Ayuda}/>
             <Route path="/solicitud_credito/:id" component={Test} />
-            
+            <Route path="/manage_gestores/:id" component={Gestor} />
+            <Route path="/manage_gestores" component={ManageGestores} />
             <Route path="/registro/:token" component={Registro} />
             <Route path="/registro" component={Registro} />
             <Route path="/registro_gestor" component={RegistroGestor} />

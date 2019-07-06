@@ -4,11 +4,14 @@ import Webcam from "react-webcam";
 //import axios from 'axios';
 //import  * as tf from '@tensorflow/tfjs';
 //let model = null;
+import { graphql } from 'react-apollo';
+import prediccion from '../../queries/prediccion';
 
 class WebcamCapture extends React.Component {
   constructor() {
     super()
     this.capture = this.capture.bind(this);
+    this.runQuery = this.runQuery.bind(this);
   }
 
   setRef = webcam => {
@@ -17,34 +20,29 @@ class WebcamCapture extends React.Component {
 
   async componentDidMount() {
     //model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
-    setInterval(this.capture, 8000);
+    setInterval(this.capture, 5000);
+  }
+
+  runQuery(imagen) {
+    this.props.mutate({
+      variables: {
+        imagen
+      }
+    }).then((res) =>{
+      console.log(res);
+    }).catch((res) => {
+      if (res.graphQLErrors) {
+        const errors = res.graphQLErrors.map(error => error.message);
+        const error = errors[0];
+        this.setState({ error });
+      }
+    })
   }
 
   capture() {
     if (this.webcam.getScreenshot()) {
-      var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
-
-      var visualRecognition = new VisualRecognitionV3({
-        version: '2018-03-19',
-        iam_apikey: 'vUt4mo3qJw0Gbg0B_iNG6dmel_PJptPlym-08bL4k-LH'
-      });
-
-      var params = {
-        images_file: this.webcam.getScreenshot(),
-        classifier_ids: ["DefaultCustomModel_1460318682"],
-        threshold: 0.2
-      };
-
-      //this.props.handleEstadoEmocional();
-
-      visualRecognition.classify(params, function(err, response) {
-        if (err) { 
-          console.log(err);
-        } else {
-          console.log(JSON.stringify(response, null, 2))
-        }
-      });
-
+      // 
+      this.runQuery(this.webcam.getScreenshot())
       /*
       var canvas = this.props.canvas.current; 
       canvas.height = 300;
@@ -88,4 +86,4 @@ class WebcamCapture extends React.Component {
   }
 }
 
-export default WebcamCapture
+export default graphql(prediccion)(WebcamCapture);

@@ -40,6 +40,24 @@ class Navbar extends Component {
             }
         }
     }
+    renderIsInstitucionG() {
+        if (this.props.data.usuario != null) {
+            if (this.props.data.usuario.tipo_usuario === "Institucion") {
+                return (
+                    <div>
+                        <Link to="/manage_gestores" className="navbar-item" onClick={this.handleClick}>
+                            Mis gestores de banco&nbsp;&nbsp;
+                        <span className="icon has-text-warning">
+                                <i className="fa fa-money" aria-hidden="true"></i>
+                            </span>
+                        </Link>
+
+                    </div>
+                );
+            }
+        }
+    }
+
     renderIsGestor() {
         if (this.props.data.usuario != null) {
             if (this.props.data.usuario.tipo_usuario === "Gestor") {
@@ -142,6 +160,7 @@ class Navbar extends Component {
                                     </span>
                                 </Link>
                                 {this.renderIsInstitucion()}
+                                {this.renderIsInstitucionG()}
                                 {this.renderIsGestor()}
                                 {this.renderIsGestorC()}
 

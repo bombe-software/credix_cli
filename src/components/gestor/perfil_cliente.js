@@ -12,7 +12,14 @@ class Perfil extends GenericForm {
         super(props);
         this.renderSolicitudes = this.renderSolicitudes.bind(this);
         this.renderStatus = this.renderStatus.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
     }
+    onSubmit(){
+        this.props.history.push(`/solicitud_credito/${this.props.data.cliente.id}`)
+
+    }
+
 
     renderStatus(status) {
         if (status) {
@@ -87,7 +94,10 @@ class Perfil extends GenericForm {
                                     </p>
                                     <hr/>
                                     {this.renderSolicitudes()}
+                            <div className="has-text-right"><button onClick={this.onSubmit} className="button is-warning">Generar solicitud nueva</button></div>
+
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,7 @@ class Test extends GenericForm {
         this.onSubmit = this.onSubmit.bind(this);
         this.handleEstadoEmocional = this.handleEstadoEmocional.bind();
     }
-    handleEstadoEmocional(estado_emocional_1, estado_emocional_2 ){
+    handleEstadoEmocional(estado_emocional_1, estado_emocional_2) {
         this.setState({
             estado_emocional_1,
             estado_emocional_2
@@ -29,17 +29,19 @@ class Test extends GenericForm {
     }
 
     async onSubmit(values) {
-        const variables = 
-        { promedio_ingresos_mensuales: parseInt(values.promedio_ingresos_mensuales) , 
-            cliente: this.state.id };
+        const variables =
+        {
+            promedio_ingresos_mensuales: parseInt(values.promedio_ingresos_mensuales),
+            cliente: this.state.id
+        };
 
         await this.props.mutate({
             variables
-        }).then((res) =>{
+        }).then((res) => {
             this.props.history.push({
                 pathname: `/solicitud_confirmacion/${res.data.addTest.id}/${variables.cliente}`,
             })
-        } 
+        }
         ).catch((res) => {
             if (res.graphQLErrors) {
                 const errors = res.graphQLErrors.map(error => error.message);
@@ -90,7 +92,7 @@ class Test extends GenericForm {
                     </p>
                                     <br />
 
-                                    <WebcamCapture handleEstadoEmocional={this.handleEstadoEmocional} />
+                                    {/* <WebcamCapture handleEstadoEmocional={this.handleEstadoEmocional} /> */}
 
                                     <Form
                                         onSubmit={this.onSubmit}
@@ -103,6 +105,164 @@ class Test extends GenericForm {
                                             <form onSubmit={handleSubmit}>
                                                 <div className="level">
                                                     <div className="level-item">
+                                                        <Field name="tipo_prestamo"
+                                                            component={this.renderSelectField}
+                                                            label="¿Qué tipo de préstamo necesita?"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="personal">Personal</option>
+                                                            <option value="bienes de consumo duradero">Bienes de consumo duradero</option>
+                                                            <option value="estudios">Estudios</option>
+                                                            <option value="hipotecarios">Hipotecarios</option>
+                                                            <option value="empresarial">Empresarial</option>
+                                                        </Field>
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="tipo_interes_manejar"
+                                                            component={this.renderSelectField}
+                                                            type='number'
+                                                            label="¿Cuál es el monto del crédito?"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="variable">Variable</option>
+                                                            <option value="fijo">Fijo</option>
+                                                        </Field>
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="plazo"
+                                                            component={this.renderSelectField}
+                                                            type='number'
+                                                            label="¿Cuál es el plazo?"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="corto">Corto</option>
+                                                            <option value="mediano">Mediano</option>
+                                                            <option value="largo">Largo</option>
+
+                                                        </Field>
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="motivo"
+                                                            component={this.renderSelectField}
+                                                            label="Qué tipo de interés se va a manejar"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="refaccionario">Refaccionario</option>
+                                                            <option value="financiamiento">financiamiento</option>
+                                                        </Field>
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿Eres persona empleada?"
+                                                        >
+                                                            <option value="-">Selecciona una opción</option>
+                                                            <option value="si">Si</option>
+                                                            <option value="no">No</option>
+                                                            </Field>
+                                                    </div>
+                                                </div>
+                                                {/* <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="(Si trabaja) ¿Cuáles son tus ingresos netos aproximados por mes?"
+                                                        />
+                                                    </div>
+                                                </div> */}
+                                                {/* <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="personas_economicamente_activas"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿Cuántas personas dependen económicamente de ti?"
+                                                        />
+                                                    </div>
+                                                </div> */}
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="personas_economicamente_activas"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿Cuántas personas dependen económicamente de ti?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿De las personas con las que vives, cuantas de ellas se encuentran dentro de la población económicamente activa?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="(Si respondió solo yo) ¿Cuánto es el ingreso neto aproximado por mes en el hogar?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿Cuál es el gasto neto de cada mes en gastos fijos (arrienda, servicios básicos, transporte, etc.)?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿Cuál es el gasto neto de cada mes en deudas que ya tienes?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="Usted esta incorporado al trabajo formal?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="(En caso de si estar en formal) Proporcione su RFC: (solo para corroborar respuesta anterior) "
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
+                                                        <Field name="prestamo"
+                                                            component={this.renderTextField}
+                                                            type='number'
+                                                            label="¿Recibes tus sueldos en la institución financiera (la que esté haciendo la prueba)?"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="level">
+                                                    <div className="level-item">
                                                         <Field name="promedio_ingresos_mensuales"
                                                             component={this.renderTextField}
                                                             type='number'
@@ -110,13 +270,13 @@ class Test extends GenericForm {
                                                         />
                                                     </div>
                                                 </div>
-                                                
+
                                                 {/* <code>{this.state.error}</code> */}
                                                 <br />
                                                 <div className="buttons has-text-centered">
                                                     <button type="submit" className="button is-primary" disabled={submitting}>
                                                         Registrarse
-                            </button>
+                                                    </button>
                                                 </div>
                                             </form>
                                         )}

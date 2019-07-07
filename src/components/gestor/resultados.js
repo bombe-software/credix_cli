@@ -3,6 +3,11 @@ import { graphql } from 'react-apollo';
 import { Doughnut } from 'react-chartjs-2';
 import resultado from './../../queries/solicitud';
 
+import * as tf from '@tensorflow/tfjs';
+
+const model = tf.loadLayersModel('http://localhost:3000/model12/model.json');
+
+let proba = 0.5;
 
 class Resultados extends React.Component {
 
@@ -11,15 +16,19 @@ class Resultados extends React.Component {
         this.state = {
             candidato: NaN,
             no_candidato: NaN,
+            model, 
+            prediccion: null
         };
+        this.waitForPromise();
     }
-
-    generateData(names) {
-
+    generateData(names, el) {
+        if(el != undefined){
+            proba = el;
+        }
         return {
             labels: names,
             datasets: [{
-                data: [120, 230],
+                data: [proba, 1-proba],
                 backgroundColor: [
                     'rgba(69, 196, 158, 0.9)',
                     'rgba(115, 86, 201, 0.9)',
@@ -34,10 +43,20 @@ class Resultados extends React.Component {
         };
     }
 
+    async waitForPromise() {
+        // let result = await any Promise, like:
+        const model = await tf.loadLayersModel('http://localhost:3000/model12/model.json');
+        this.setState({model})
+    }
 
 
     render() {
         if (this.props.data.loading) return (<div>Loading...</div>)
+        if(!this.state.model.name) return (<div>Loading...</div>)
+        
+        const prediction  = this.state.model.predict(tf.tensor([6,5,2,3,4,4,3,8]).reshape([1,8]));
+        const array = Array.prototype.slice.call(prediction.dataSync());
+        console.log(array)
         let candidato = [
             'Si es candidato',
             'No es candidato',
@@ -62,11 +81,11 @@ class Resultados extends React.Component {
                     <div className="box">
                         <div className="columns">
                             <div className="column ">
-                                <Doughnut data={this.generateData(candidato)} /> <br />
+                                <Doughnut data={this.generateData(candidato, array[0])} /> <br />
                             </div>
                             <div className="column  has-text-centered">
-                                <div className="is-size-3 has-text-centered">Amonestaciones</div>
-                                <div className="is-size-2 has-text-centered"><strong>4</strong></div>
+                                <div className="is-size-3 has-text-centered">Amonestaciones en razon de los pagos</div>
+                                <div className="is-size-2 has-text-centered"><strong>{array[1].toFixed(4)}</strong></div>
                                 <br />
                                 <div className="has-text-centered is-size-3"><strong>Resultado final:</strong></div>
                                 <br />

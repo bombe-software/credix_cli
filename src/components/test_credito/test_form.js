@@ -18,8 +18,9 @@ class Test extends GenericForm {
             estado_emocional_2: ""
         }
         this.onSubmit = this.onSubmit.bind(this);
-        this.handleEstadoEmocional = this.handleEstadoEmocional.bind();
+        this.handleEstadoEmocional = this.handleEstadoEmocional.bind(this);
     }
+
     handleEstadoEmocional(estado_emocional_1, estado_emocional_2) {
         this.setState({
             estado_emocional_1,

@@ -6,6 +6,11 @@ import Webcam from "react-webcam";
 //let model = null;
 import { graphql } from 'react-apollo';
 import prediccion from '../../queries/prediccion';
+import string_nativo from '../../queries/string_nativo';
+import suscribe_to_prueba from '../../subscriptions/prueba';
+import io from 'socket.io-client';
+
+var socket = io('http://localhost:9000');
 
 class WebcamCapture extends React.Component {
   constructor() {
@@ -19,18 +24,28 @@ class WebcamCapture extends React.Component {
   };
 
   async componentDidMount() {
+    console.log('lol')
+    socket.on('connect', function(e){
+      console.log(e)
+    });
     //model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
     setInterval(this.capture, 5000);
   }
 
-  runQuery(imagen) {
-    console.log('esta funcionando');
+
+
+  runQuery(imagen) {;
+    socket.emit('lol', imagen);
+    socket.on('image', e=>{
+      this.props.handleEstadoEmocional({estado_emocional_1: JSON.parse(e.string)[0], estado_emocional_2: JSON.parse(e.string)[1]});
+    })
+    /*
     this.props.mutate({
       variables: {
         imagen
       }
     }).then((res) =>{
-      console.log(res);
+      console.log('');
     }).catch((res) => {
       if (res.graphQLErrors) {
         const errors = res.graphQLErrors.map(error => error.message);
@@ -38,32 +53,14 @@ class WebcamCapture extends React.Component {
         this.setState({ error });
       }
     })
+    */
   }
 
   capture() {
-    if (this.webcam.getScreenshot()) {
-      // 
-      this.runQuery(this.webcam.getScreenshot())
-      /*
-      var canvas = this.props.canvas.current; 
-      canvas.height = 300;
-      canvas.width = 150;
-      var ctx = canvas.getContext("2d"); 
-      var image = new Image(); 
-      image.src = this.webcam.getScreenshot();
-      image.onload = function() {
-          ctx.drawImage(image, 0, 0); 
-      };
-      */
-      //var image1 = ctx.getImageData(0, 0, canvas.height, canvas.width);
-      /*
-      var x = tf.browser.fromPixels(image1);
-      x= x.reshape([1,300,150,3]);
-      const prediction = model.predict(x);
-      //console.log(prediction);
-      const array_result = prediction.argMax().dataSync();
-      */
-      //console.log(array_result);
+    if(this.webcam){
+      if (this.webcam.getScreenshot()) { 
+        this.runQuery(this.webcam.getScreenshot())
+      }
     }
   }
 
@@ -87,4 +84,4 @@ class WebcamCapture extends React.Component {
   }
 }
 
-export default graphql(prediccion)(WebcamCapture);
+export default graphql(string_nativo)(graphql(prediccion)(WebcamCapture));

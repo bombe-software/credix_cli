@@ -24,6 +24,7 @@ class WebcamCapture extends React.Component {
   }
 
   runQuery(imagen) {
+    console.log('esta funcionando');
     this.props.mutate({
       variables: {
         imagen

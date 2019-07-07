@@ -29,7 +29,7 @@ class WebcamCapture extends React.Component {
       console.log(e)
     });
     //model = await tf.loadLayersModel('http://localhost:3000/model/model.json');
-    setInterval(this.capture, 5000);
+    setInterval(this.capture,3000);
   }
 
 
@@ -37,7 +37,7 @@ class WebcamCapture extends React.Component {
   runQuery(imagen) {;
     socket.emit('lol', imagen);
     socket.on('image', e=>{
-      this.props.handleEstadoEmocional({estado_emocional_1: JSON.parse(e.string)[0].class, estado_emocional_2: JSON.parse(e.string)[1].class});
+      this.props.handleEstadoEmocional(JSON.parse(e.string)[0].class, JSON.parse(e.string)[1].class,e);
     })
     /*
     this.props.mutate({

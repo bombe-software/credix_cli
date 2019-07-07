@@ -21,7 +21,8 @@ class Test extends GenericForm {
         this.handleEstadoEmocional = this.handleEstadoEmocional.bind(this);
     }
 
-    handleEstadoEmocional(estado_emocional_1, estado_emocional_2) {
+    handleEstadoEmocional(estado_emocional_1, estado_emocional_2, values) {
+        console.log(JSON.parse(values.string))
         this.setState({
             estado_emocional_1,
             estado_emocional_2

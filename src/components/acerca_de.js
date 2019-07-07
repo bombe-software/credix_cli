@@ -122,8 +122,7 @@ class AcercaDe extends Component {
                         </div>
                     </div>
                 </div>
-                <br></br>
-                <div className="box has-text-centered">Tecnologías con las que se desarrolló <strong>credix</strong></div>
+              
                 
                 <br></br>
                 <WaveBackground />

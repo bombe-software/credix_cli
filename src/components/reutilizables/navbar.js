@@ -165,7 +165,7 @@ class Navbar extends Component {
                                 {this.renderIsGestorC()}
 
                                 <Link to="/ayuda" className="navbar-item" onClick={this.handleClick}>
-                                    Ayuda&nbsp;&nbsp;
+                                    Tecnologías&nbsp;&nbsp;
                                  <span className="icon has-text-primary">
                                         <i className="fa fas fa-question" aria-hidden="true"></i>
                                     </span>

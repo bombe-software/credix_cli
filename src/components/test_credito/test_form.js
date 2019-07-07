@@ -76,7 +76,7 @@ class Test extends GenericForm {
             variables
         }).then((res) => {
             this.props.history.push({
-                pathname: `/solicitud_confirmacion/${res.data.addTest.id}/${variables.cliente}`,
+                pathname: `/solicitud_confirmacion/${res.data.addTest.id}/${variables.cliente}/${variables.monto_credito}`,
             })
         }
         ).catch((res) => {

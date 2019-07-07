@@ -98,7 +98,7 @@ class App extends Component {
             <Route path="/clientes/:id/solicitud/:id" component={PerfilS} />
             <Route path="/clientes/:id" component={PerfilC} />
             <Route path="/clientes" component={Clientes} />
-            <Route path="/solicitud_confirmacion/:id_test/:id_cliente" component={Solicitud3} />
+            <Route path="/solicitud_confirmacion/:id_test/:id_cliente/:monto" component={Solicitud3} />
             <Route path="/resultados/:id" component={Resultados} />
             <Route path="/solicitud" component={Solicitud2} />
             <Route path="/creditos" component={AprobarCreditos} />

@@ -37,7 +37,7 @@ class WebcamCapture extends React.Component {
   runQuery(imagen) {;
     socket.emit('lol', imagen);
     socket.on('image', e=>{
-      this.props.handleEstadoEmocional({estado_emocional_1: JSON.parse(e.string)[0], estado_emocional_2: JSON.parse(e.string)[1]});
+      this.props.handleEstadoEmocional({estado_emocional_1: JSON.parse(e.string)[0].class, estado_emocional_2: JSON.parse(e.string)[1].class});
     })
     /*
     this.props.mutate({

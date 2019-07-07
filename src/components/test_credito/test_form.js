@@ -87,7 +87,7 @@ class Test extends GenericForm {
             }
         })
     }
-    
+    /*
         renderWebCam() {
             const socket = io.connect('http://localhost:9000');
             socket.on('image', (image) => {
@@ -95,9 +95,9 @@ class Test extends GenericForm {
                 imageElm.src = `data:image/jpeg;base64,${image}`;
             });
         }
-    
+    */
     render() {
-        this.renderWebCam();
+        //this.renderWebCam();
         return (
             <div>
                 <section className="hero is-primary">

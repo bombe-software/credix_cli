@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
 import WaveBackground from './reutilizables/wave_background';
 
 class FAQ extends Component {

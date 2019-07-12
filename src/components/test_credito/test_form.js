@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Field } from "react-final-form";
 import GenericForm from '../reutilizables/generic_form';
-import io from 'socket.io-client';
 import WebcamCapture from "./webcam_capture";
 import { graphql } from 'react-apollo';
 import WaveBackground from '../reutilizables/wave_background';

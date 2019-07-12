@@ -18,4 +18,3 @@ exports.api = "http://localhost:9000";
 exports.ws = "ws://localhost:9000";
 exports.web = "http://localhost:3000";
 exports.status = false;
-exports.MONGO_URI = `mongodb://localhost/credix`;
